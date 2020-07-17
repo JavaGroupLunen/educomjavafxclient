@@ -12,8 +12,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="client" target="11" />
-      <module name="ui" target="11" />
+      <module name="client" target="12" />
+      <module name="ui" target="12" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
