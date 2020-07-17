@@ -1,41 +1,50 @@
 
-C
-java:S3740"/Provide the parametrized type for this generic.(¡¼Ş
-C
-java:S3740"/Provide the parametrized type for this generic.(¡¼Ş
-C
-java:S3740"/Provide the parametrized type for this generic.(† òİ
-C
-java:S3740"/Provide the parametrized type for this generic.(† òİ
-l
-java:S1450"SRemove the "data" field and declare it as a local variable in the relevant methods.(´¦Ğşÿÿÿÿ
-š
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‚°°Æÿÿÿÿÿ
-A
-java:S1659"(Declare "tfLastName" on a separate line.(‚…±šøÿÿÿÿ
->
-java:S1659"%Declare "tfEmail" on a separate line.(‚…±šøÿÿÿÿ
-<
-java:S1659"#Declare "tfage" on a separate line.(‚…±šøÿÿÿÿ
->
-java:S1659"%Declare "clmName" on a separate line.(˜§¼ùÿÿÿÿ
-?
-java:S1659"&Declare "clmEmail" on a separate line.(˜§¼ùÿÿÿÿ
-;
-java:S1659"'Declare "clmUpdate" on a separate line.(¢äš¼
-;
-java:S1659"'Declare "btnUpdate" on a separate line.(‡æïë
-;
-java:S1659"'Declare "btnDelete" on a separate line.(‡æïë
-9
-java:S1659"%Declare "btnSave" on a separate line.(‡æïë
+]	java:S125x"<This block of commented-out lines of code should be removed.(¼¬ ÿÿÿÿÿ8—Ü´Òµ.
+£
+java:S1186Y"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‚°°Æÿÿÿÿÿ8ßãÔÒµ.
+G
+java:S1659%"%Declare "tfEmail" on a separate line.(‚…±šøÿÿÿÿ8ßãÔÒµ.
+e
+java:S1128"CRemove this unused import 'com.mechanitis.demo.client.StockClient'.(¤™ùæúÿÿÿÿ8—Ü´Òµ.
+G
+java:S1659)"%Declare "clmName" on a separate line.(˜§¼ùÿÿÿÿ8ßãÔÒµ.
+B
+java:S1659="%Declare "btnSave" on a separate line.(‡æïë8ßãÔÒµ.
 L
-java:S1117"8Rename "list" which hides the field declared at line 52.(† òİ
-Q
-java:S1117"8Rename "data" which hides the field declared at line 29.(ù°ËÔüÿÿÿÿ
-Q
-java:S1117"8Rename "data" which hides the field declared at line 29.(ù°ËÔüÿÿÿÿ
-…
-java:S1130"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(‚°°Æÿÿÿÿÿ
-Q	java:S106"9Replace this use of System.out or System.err by a logger.(”Ò¦¢ûÿÿÿÿ
-T	java:S125"<This block of commented-out lines of code should be removed.(·ğŞ×øÿÿÿÿ
+java:S1481d"*Remove this unused "lehre" local variable.(‡°ûÿÿÿÿ8ßãÔÒµ.
+]	java:S125"<This block of commented-out lines of code should be removed.(á€î·şÿÿÿÿ8ßãÔÒµ.
+D
+java:S1659="'Declare "btnDelete" on a separate line.(‡æïë8ßãÔÒµ.
+D
+java:S1659+"'Declare "clmUpdate" on a separate line.(¢äš¼8ßãÔÒµ.
+L
+java:S37407"/Provide the parametrized type for this generic.(¡¼Ş8ßãÔÒµ.
+U
+java:S1117g"8Rename "list" which hides the field declared at line 55.(† òİ8ßãÔÒµ.
+E
+java:S1659%"#Declare "tfage" on a separate line.(‚…±šøÿÿÿÿ8ßãÔÒµ.
+D
+java:S1659="'Declare "btnUpdate" on a separate line.(‡æïë8ßãÔÒµ.
+X	java:S125r"<This block of commented-out lines of code should be removed.(Â™ŒÓ8—Ü´Òµ.
+u
+java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8—Ü´Òµ.
+L
+java:S37407"/Provide the parametrized type for this generic.(¡¼Ş8ßãÔÒµ.
+H
+java:S1659)"&Declare "clmEmail" on a separate line.(˜§¼ùÿÿÿÿ8ßãÔÒµ.
+]	java:S1258"<This block of commented-out lines of code should be removed.(·ğŞ×øÿÿÿÿ8ßãÔÒµ.
+]	java:S125z"<This block of commented-out lines of code should be removed.(›ğ“Îÿÿÿÿÿ8—Ü´Òµ.
+L
+java:S3740g"/Provide the parametrized type for this generic.(† òİ8ßãÔÒµ.
+M
+java:S1144Œ"/Remove this unused private "fillUpdate" method.(¨ôËü8—Ü´Òµ.
+L
+java:S3740g"/Provide the parametrized type for this generic.(† òİ8ßãÔÒµ.
+
+java:S1130Y"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(‚°°Æÿÿÿÿÿ8ßãÔÒµ.
+u
+java:S14501"XRemove the "webClient" field and declare it as a local variable in the relevant methods.(áÉš8ßãÔÒµ.
+J
+java:S1659%"(Declare "tfLastName" on a separate line.(‚…±šøÿÿÿÿ8ßãÔÒµ.
+[
+java:S1854d"9Remove this useless assignment to local variable "lehre".(‡°ûÿÿÿÿ8ßãÔÒµ.

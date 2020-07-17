@@ -16,6 +16,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 
@@ -65,10 +66,11 @@ public class SecondaryController implements Initializable {
 
     //Add butonuna Click lendiginde yapicak islem.
     @FXML
-    private void addAction() throws IOException {
+    private void addAction() throws IOException, URISyntaxException {
 
         Lehre lehre = new Lehre(tfFirstName.getText(), tfLastName.getText(), tfEmail.getText());
-        list.add(lehre);
+         Integer codeValue=new WebClientStockClient(webClient).saveLehre(lehre).getStatusCodeValue();
+        System.out.println(codeValue);
 
         lehresData = FXCollections.observableList(list);
         tableView.setItems(lehresData);
