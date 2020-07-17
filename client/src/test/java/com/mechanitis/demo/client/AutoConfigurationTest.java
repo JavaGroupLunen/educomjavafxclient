@@ -14,14 +14,14 @@ public class AutoConfigurationTest {
                                                      RSocketRequesterAutoConfiguration.class,
                                                      RSocketStrategiesAutoConfiguration.class));
 
-    @Test
-    void name() {
-        contextRunner.run(context -> {
-            StockClient stocksClient = (StockClient) context.getBean("rSocketStocksClient");
-            stocksClient.pricesFor("TEST")
-                        .take(5)
-                        .log()
-                        .blockLast();
-        });
-    }
+//    @Test
+//    void name() {
+//        contextRunner.run(context -> {
+//            StockClient stocksClient = (StockClient) context.getBean("rSocketStocksClient");
+//            stocksClient.pricesFor("TEST")
+//                        .take(5)
+//                        .log()
+//                        .blockLast();
+//        });
+//    }
 }

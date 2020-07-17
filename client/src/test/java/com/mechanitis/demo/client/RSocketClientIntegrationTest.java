@@ -21,11 +21,11 @@ public class RSocketClientIntegrationTest {
 class RSocketController {
     private final RSocketRequester rSocketRequester;
 
-    @GetMapping
-    Flux<StockPrice> getPrices () {
-        return new RSocketClient(rSocketRequester).pricesFor("RSOCKET_TEST")
-                                           .take(5)
-                                           .log();
-    }
+//    @GetMapping
+//    Flux<StockPrice> getPrices () {
+//        return new RSocketClient(rSocketRequester).pricesFor("RSOCKET_TEST")
+//                                           .take(5)
+//                                           .log();
+//    }
 }
 

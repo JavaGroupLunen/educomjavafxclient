@@ -17,22 +17,11 @@ public class ClientAutoConfiguration {
     }
 
     @Bean
-    @Profile(ClientProfiles.RSOCKET)
-    StockClient rSocketStockClient(RSocketRequester rSocketRequester) {
-        return new RSocketClient(rSocketRequester);
-    }
-
-    @Bean
     @Profile(ClientProfiles.SSE)
     StockClient webStockClient(WebClient webClient) {
         return new WebClientStockClient(webClient);
     }
 
-    @Bean
-    @Lazy
-    RSocketRequester rSocketRequester(RSocketRequester.Builder builder) {
-        return builder.connectTcp("localhost", 7000)
-                      .block();
-    }
+
 
 }

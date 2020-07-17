@@ -8,12 +8,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
 @Component
 public class StageInitializer implements ApplicationListener<StockChartApplication.StageReadyEvent> {
+
+    @Value("classpath:/secondary.fxml")
+    private Resource chartResource;
 
     private ApplicationContext applicationContext;
     private String applicationTitle;
@@ -29,16 +33,22 @@ public class StageInitializer implements ApplicationListener<StockChartApplicati
 
         try {
             Stage stage = stageReadyEvent.getStage();
-            FXMLLoader fxmlLoader = new FXMLLoader(new ClassPathResource("/chart.fxml").getURL());
+            FXMLLoader fxmlLoader = new FXMLLoader(getChartResource().getURL());
             fxmlLoader.setControllerFactory(aClass -> this.applicationContext.getBean(aClass));
 
             Parent load = fxmlLoader.load();
             stage.setScene(new Scene(load, 800, 600));
             stage.setTitle(applicationTitle);
+
             stage.show();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
+    private Resource getChartResource() {
+        return chartResource;
+    }
+
 }
