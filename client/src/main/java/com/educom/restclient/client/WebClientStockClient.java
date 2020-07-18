@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 @Log4j2
 public class WebClientStockClient implements StockClient {
@@ -21,18 +23,6 @@ public class WebClientStockClient implements StockClient {
     public WebClientStockClient(WebClient webClient) {
         this.webClient = webClient;
     }
-
-//    @Override
-//    public Flux<StockPrice> pricesFor(String symbol) {
-//        log.info("WebClientStockClient");
-//        return webClient.get()
-//                        .uri("http://localhost:8080/lehre/{symb}", symbol)
-//                        .retrieve()
-//                        .bodyToFlux(StockPrice.class)
-//                        .retryBackoff(5, Duration.ofSeconds(1), Duration.ofSeconds(5))
-//                        .doOnError(IOException.class,
-//                                   e -> log.info(() -> "Closing stream for " + symbol + ". Received " + e.getMessage()));
-//    }
 
 
     @Override
@@ -68,6 +58,21 @@ public class WebClientStockClient implements StockClient {
                 .retryBackoff(5, Duration.ofSeconds(1), Duration.ofSeconds(5))
                 .doOnError(IOException.class,
                         e -> log.info(() -> "Closing stream for " + ". Received " + e.getMessage()));
+    }
+
+    @Override
+    public Flux<Lehre>  delete(Lehre lehre) {
+        log.info("WebClientStockClient");
+        return webClient.delete()
+                .uri("localhost:8080/api/deletebyId/{id}", lehre.getId())
+                .retrieve()
+                .bodyToFlux(Lehre.class)
+                .retryBackoff(5, Duration.ofSeconds(1), Duration.ofSeconds(5))
+                .doOnError(IOException.class,
+                        e -> log.info(() -> "Closing stream for " + lehre + ". deleted " + e.getMessage())).log();
+
+
+
     }
 
     public ResponseEntity<String> saveLehre(Lehre lehre) throws URISyntaxException {

@@ -1,24 +1,29 @@
 package com.educom.ui;
 
 
-import com.educom.restclient.model.Lehre;
 import com.educom.restclient.client.WebClientStockClient;
+import com.educom.restclient.model.Lehre;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Flux;
 import util.ActionButtonTableCell;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
+import static javafx.collections.FXCollections.fill;
 import static javafx.collections.FXCollections.observableArrayList;
 
 
@@ -46,7 +51,7 @@ public class SecondaryController implements Initializable {
 
     private Lehre updatelehre=new Lehre();
 
-    private WebClient webClient;
+    private final WebClient webClient = WebClient.builder().build();
 
     //ObservableList uzerinden bu arraylisti Tableview e ekliyoruz.
     // bunun icin liste tanimlamamiz lazim ve bu listeyi Tableview
@@ -68,11 +73,9 @@ public class SecondaryController implements Initializable {
     private void addAction() throws IOException, URISyntaxException {
 
         Lehre lehre = new Lehre(tfFirstName.getText(), tfLastName.getText(), tfEmail.getText());
-         Integer codeValue=new WebClientStockClient(webClient).saveLehre(lehre).getStatusCodeValue();
+        Integer codeValue = new WebClientStockClient(webClient).saveLehre(lehre).getStatusCodeValue();
         System.out.println(codeValue);
-
-        lehresData = FXCollections.observableList(list);
-        tableView.setItems(lehresData);
+        fillTableView();
         clearField();
     }
 
@@ -86,25 +89,34 @@ public class SecondaryController implements Initializable {
         tableView.setItems(data);
         clearField();
     }
+
     @FXML
     private void switchToPrimary() throws IOException {
 
     }
 
+    private void fillTableView() {
+        List<Lehre> lehrelist = new WebClientStockClient(webClient).getLehreList().collectList().block();
+        lehresData = FXCollections.observableList(lehrelist).sorted();
+        tableView.setItems(lehresData);
+    }
+
+    private void deleteClient(Lehre lehre){
+        List<Lehre> lehreFlux=new WebClientStockClient(webClient).delete(lehre).collectList().block();
+
+
+//        lehresData = FXCollections.observableList(lehreFlux).sorted();
+//        tableView.setItems(lehresData);
+      //  fillTableView();
+    }
 
     //clm ile yazilanlar Tableview in icerisindeki kolonlar
     //
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        webClient = WebClient.builder().build();
 
-         Flux<Lehre> lehre = new WebClientStockClient(webClient).getLehreById(7L).take(1).log();
-        List<Lehre> lehrelist = new WebClientStockClient(webClient).getLehreList().collectList().block();
+        //  Flux<Lehre> lehre = new WebClientStockClient(webClient).getLehreById(7L).take(1).log();
 
-        List list = new ArrayList();
-        list.addAll(lehrelist);
-
-        lehresData = FXCollections.observableList(list);
         tableView.setEditable(true);
         tableView.getSelectionModel().setCellSelectionEnabled(true);
         //Lehre object icerisindeki field lar ile ayni olmasi gerekir
@@ -112,10 +124,12 @@ public class SecondaryController implements Initializable {
         clmVorname.setCellValueFactory(new PropertyValueFactory("firstName"));
         clmName.setCellValueFactory(new PropertyValueFactory("lastName"));
         clmEmail.setCellValueFactory(new PropertyValueFactory("emailId"));
-      //  clmAge.setCellValueFactory(new PropertyValueFactory<Lehre,Integer>("age"));
+        //  clmAge.setCellValueFactory(new PropertyValueFactory<Lehre,Integer>("age"));
 
         clmDelete.setCellFactory(ActionButtonTableCell.<Lehre>forTableColumn("Delete", (Lehre p) -> {
-            tableView.getItems().remove(p);
+deleteClient(p);
+
+
             return p;
         }));
 //        clmUpdate.setCellFactory(ActionButtonTableCell.<Lehre>forTableColumn("Update", (Lehre p) -> {
@@ -129,6 +143,7 @@ public class SecondaryController implements Initializable {
 //        }));
         tableView.getItems().setAll(lehresData);
         tableView.getColumns().setAll(clmVorname, clmName, clmEmail,clmAge,clmDelete,clmUpdate);
+        fillTableView();
 
     }
 
