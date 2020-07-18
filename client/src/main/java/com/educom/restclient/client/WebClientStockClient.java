@@ -1,5 +1,7 @@
-package com.mechanitis.demo.client;
+package com.educom.restclient.client;
 
+import com.educom.restclient.client.StockClient;
+import com.educom.restclient.model.Lehre;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;

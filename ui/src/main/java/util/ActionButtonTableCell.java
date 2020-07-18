@@ -1,4 +1,4 @@
-package com.mechanitis.demo.ui;
+package util;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;

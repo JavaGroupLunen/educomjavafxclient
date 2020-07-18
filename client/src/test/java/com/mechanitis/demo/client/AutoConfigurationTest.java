@@ -1,7 +1,7 @@
 package com.mechanitis.demo.client;
 
+import com.educom.restclient.client.ClientAutoConfiguration;
 import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.autoconfigure.rsocket.RSocketRequesterAutoConfiguration;
 import org.springframework.boot.autoconfigure.rsocket.RSocketStrategiesAutoConfiguration;

@@ -1,11 +1,10 @@
-package com.mechanitis.demo.client;
+package com.educom.restclient.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import reactor.core.CoreSubscriber;
-import reactor.core.publisher.Flux;
+
 
 @Data
 @NoArgsConstructor

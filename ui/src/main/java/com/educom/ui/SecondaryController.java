@@ -1,19 +1,18 @@
-package com.mechanitis.demo.ui;
+package com.educom.ui;
 
 
-import com.mechanitis.demo.client.Lehre;
-import com.mechanitis.demo.client.StockClient;
-import com.mechanitis.demo.client.WebClientStockClient;
+import com.educom.restclient.model.Lehre;
+import com.educom.restclient.client.WebClientStockClient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
+import util.ActionButtonTableCell;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

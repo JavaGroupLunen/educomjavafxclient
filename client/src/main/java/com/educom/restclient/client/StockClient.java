@@ -1,5 +1,6 @@
-package com.mechanitis.demo.client;
+package com.educom.restclient.client;
 
+import com.educom.restclient.model.Lehre;
 import reactor.core.publisher.Flux;
 
 public interface StockClient {

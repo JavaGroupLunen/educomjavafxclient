@@ -1,4 +1,4 @@
-package com.mechanitis.demo.ui;
+package com.educom.ui;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -46,7 +46,7 @@ public class StageInitializer implements ApplicationListener<StockChartApplicati
         }
     }
 
-    private Resource getChartResource() {
+    public Resource getChartResource() {
         return chartResource;
     }
 

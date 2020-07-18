@@ -1,4 +1,4 @@
-package com.mechanitis.demo.ui;
+package com.educom.ui;
 
 
 import javafx.application.Application;
