@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<HBox prefHeight="600.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.educom.ui.SecondaryController">
+
+<HBox prefHeight="600.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.educom.ui.SecondaryController">
    <children>
       <VBox alignment="CENTER" minHeight="600.0" minWidth="133.0" prefHeight="600.0" prefWidth="133.0" spacing="20.0">
           <children>
@@ -19,22 +19,22 @@
          <children>
             <Separator prefHeight="77.0" prefWidth="298.0" />
             <Label text="Vorname" />
-             <TextField fx:id="tfFirstName"/>
+             <TextField fx:id="tfFirstName" />
             <Label text="Name" />
-             <TextField fx:id="tfLastName"/>
+             <TextField fx:id="tfLastName" />
             <Label text="e-mail" />
-             <TextField fx:id="tfEmail"/>
+             <TextField fx:id="tfEmail" />
              <Label text="Age" />
-             <TextField fx:id="tfage"/>
+             <TextField fx:id="tfage" />
 
-             <Button fx:id="btnAdd" onAction="#addAction" mnemonicParsing="false" text="Add"/>
-             <Button fx:id="btnSave" onAction="#saveAction" mnemonicParsing="false" text="Save" />
+             <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#addAction" text="Add" />
+             <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveAction" text="Save" />
 
          </children>
       </VBox>
-      <VBox prefHeight="600.0" prefWidth="335.0">
+      <VBox prefHeight="600.0" prefWidth="566.0">
          <children>
-            <HBox prefHeight="59.0" prefWidth="335.0">
+            <HBox prefHeight="82.0" prefWidth="452.0">
                <children>
                   <RadioButton mnemonicParsing="false" text="Vorname" />
                   <Separator orientation="VERTICAL" prefHeight="28.0" prefWidth="45.0" />
@@ -47,14 +47,14 @@
             <TextField prefHeight="25.0" prefWidth="202.0" />
             <TableView fx:id="tableView" prefHeight="579.0" prefWidth="335.0">
               <columns>
-                  <TableColumn fx:id="clmVorname" prefWidth="75.0" text="Vorname"/>
-                  <TableColumn fx:id="clmName" prefWidth="75.0" text="Name"/>
-                  <TableColumn fx:id="clmAge" prefWidth="75.0" text="age"/>
-                  <TableColumn fx:id="clmEmail" prefWidth="75.0" text="e-mail"/>
+                  <TableColumn fx:id="clmVorname" prefWidth="75.0" text="Vorname" />
+                  <TableColumn fx:id="clmName" prefWidth="75.0" text="Name" />
+                  <TableColumn fx:id="clmAge" prefWidth="75.0" text="age" />
+                  <TableColumn fx:id="clmEmail" prefWidth="75.0" text="e-mail" />
 
 
-                  <TableColumn fx:id="clmDelete" prefWidth="75.0" text="Delete"/>
-                  <TableColumn fx:id="clmUpdate" prefWidth="75.0" text="Update"/>
+                  <TableColumn fx:id="clmDelete" prefWidth="75.0" text="Delete" />
+                  <TableColumn fx:id="clmUpdate" prefWidth="75.0" text="Update" />
               </columns>
             </TableView>
          </children>

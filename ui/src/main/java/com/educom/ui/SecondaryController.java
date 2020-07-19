@@ -1,6 +1,7 @@
 package com.educom.ui;
 
 
+import com.educom.restclient.client.RestTemplateClient;
 import com.educom.restclient.client.WebClientStockClient;
 import com.educom.restclient.model.Lehre;
 import javafx.collections.FXCollections;
@@ -13,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import util.ActionButtonTableCell;
 
@@ -23,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static javafx.collections.FXCollections.fill;
 import static javafx.collections.FXCollections.observableArrayList;
 
 
@@ -50,8 +51,11 @@ public class SecondaryController implements Initializable {
     private TableColumn<Lehre,Integer> clmAge;
 
     private Lehre updatelehre=new Lehre();
-
+private    RestTemplate restTemplate=new RestTemplate();
     private final WebClient webClient = WebClient.builder().build();
+
+
+
 
     //ObservableList uzerinden bu arraylisti Tableview e ekliyoruz.
     // bunun icin liste tanimlamamiz lazim ve bu listeyi Tableview
@@ -64,7 +68,6 @@ public class SecondaryController implements Initializable {
     //  butun butanlari tanimliyoruz.
     @FXML
     private Button btnAdd, btnUpdate, btnDelete, btnSave;
-
 
 
 
@@ -102,12 +105,13 @@ public class SecondaryController implements Initializable {
     }
 
     private void deleteClient(Lehre lehre){
-        List<Lehre> lehreFlux=new WebClientStockClient(webClient).delete(lehre).collectList().block();
 
+        RestTemplateClient restClientTemplate = new RestTemplateClient(restTemplate);
+        restClientTemplate.deleteEmployee(lehre);
 
 //        lehresData = FXCollections.observableList(lehreFlux).sorted();
 //        tableView.setItems(lehresData);
-      //  fillTableView();
+        fillTableView();
     }
 
     //clm ile yazilanlar Tableview in icerisindeki kolonlar

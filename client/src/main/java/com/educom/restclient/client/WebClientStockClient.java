@@ -13,8 +13,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
+
 
 @Log4j2
 public class WebClientStockClient implements StockClient {

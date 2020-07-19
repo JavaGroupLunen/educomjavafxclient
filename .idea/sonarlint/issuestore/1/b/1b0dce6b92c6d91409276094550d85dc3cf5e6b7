@@ -1,0 +1,38 @@
+
+L
+java:S3740@"/Provide the parametrized type for this generic.(¡¼Ş8ô¦¤¶.
+E
+java:S1659+"#Declare "tfage" on a separate line.(‚…±šøÿÿÿÿ8ô¦¤¶.
+D
+java:S1659F"'Declare "btnDelete" on a separate line.(‡æïë8ô¦¤¶.
+D
+java:S16591"'Declare "clmUpdate" on a separate line.(¢äš¼8ô¦¤¶.
+]	java:S125$"<This block of commented-out lines of code should be removed.(á€î·şÿÿÿÿ8ô¦¤¶.
+]	java:S125A"<This block of commented-out lines of code should be removed.(·ğŞ×øÿÿÿÿ8ô¦¤¶.
+^	java:S125"<This block of commented-out lines of code should be removed.(›ğ“Îÿÿÿÿÿ8ô¦¤¶.
+B
+java:S1659F"%Declare "btnSave" on a separate line.(‡æïë8ô¦¤¶.
+M
+java:S1144¢"/Remove this unused private "fillUpdate" method.(¨ôËü8ô¦¤¶.
+G
+java:S1659+"%Declare "tfEmail" on a separate line.(‚…±šøÿÿÿÿ8ô¦¤¶.
+
+java:S1130a"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(‚°°Æÿÿÿÿÿ8ô¦¤¶.
+L
+java:S3740@"/Provide the parametrized type for this generic.(¡¼Ş8ô¦¤¶.
+D
+java:S1659F"'Declare "btnUpdate" on a separate line.(‡æïë8ô¦¤¶.
+^	java:S125"<This block of commented-out lines of code should be removed.(¼¬ ÿÿÿÿÿ8ô¦¤¶.
+H
+java:S1659/"&Declare "clmEmail" on a separate line.(˜§¼ùÿÿÿÿ8ô¦¤¶.
+Z	java:S106P"9Replace this use of System.out or System.err by a logger.(ŸÒéŸûÿÿÿÿ8ô¦¤¶.
+G
+java:S1659/"%Declare "clmName" on a separate line.(˜§¼ùÿÿÿÿ8ô¦¤¶.
+]	java:S125r"<This block of commented-out lines of code should be removed.(¥»«Ïÿÿÿÿÿ8ô¦¤¶.
+Y	java:S125…"<This block of commented-out lines of code should be removed.(Â™ŒÓ8ô¦¤¶.
+£
+java:S1186a"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‚°°Æÿÿÿÿÿ8ô¦¤¶.
+]	java:S125|"<This block of commented-out lines of code should be removed.(èé³üÿÿÿÿ8ô¦¤¶.
+J
+java:S1659+"(Declare "tfLastName" on a separate line.(‚…±šøÿÿÿÿ8ô¦¤¶.
+]	java:S125m"<This block of commented-out lines of code should be removed.(ß±È£øÿÿÿÿ8—¸ÃŸ¶.
