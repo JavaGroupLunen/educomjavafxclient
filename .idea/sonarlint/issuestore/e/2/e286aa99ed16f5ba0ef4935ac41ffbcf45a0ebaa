@@ -1,7 +1,7 @@
 
-g
-java:S1128"ERemove this unused import 'org.springframework.stereotype.Component'.(Ş÷Ñ¸ÿÿÿÿÿ8ÑŒ†Ÿ¶.
-{
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ8ÁÌ¡¶.
-u
-java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8¿ÜÀŸ¶.
+8
+java:S3878&"Remove this array creation.(ÅşÎ8Ì‰º¥¶.
+b
+java:S1128"@Remove this unused import 'org.springframework.http.HttpMethod'.(Ê¨Ä¡øÿÿÿÿ8Ì‰º¥¶.
+U	java:S106."9Replace this use of System.out or System.err by a logger.(®òßï8¸…§¥¶.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(÷¸Ø§ûÿÿÿÿ8åïÍ¤¶.

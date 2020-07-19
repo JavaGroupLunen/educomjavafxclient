@@ -15,7 +15,7 @@ import java.io.IOException;
 @Component
 public class StageInitializer implements ApplicationListener<StockChartApplication.StageReadyEvent> {
 
-    @Value("classpath:/secondary.fxml")
+    @Value("classpath:/lehre.fxml")
     private Resource chartResource;
 
     private ApplicationContext applicationContext;

@@ -8,10 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -29,20 +26,14 @@ import static javafx.collections.FXCollections.observableArrayList;
 
 
 @Component
-public class SecondaryController implements Initializable {
-
-    //ObservableList = Table view bir list turudur. burda bir Objekt listesi olusturuyoruz. table view e data atmak icin bunu olusturuyoruz.
-    // arraylist ObservableList uzerinden tableview e ekliyoruz.
-   // private ObservableList<Lehre> data=FXCollections.observableList();
+public class LehreController implements Initializable {
     private  ObservableList<Lehre> lehresData = observableArrayList();
 
-    // SceneBuilder da olusturdugumuz kompanenetlerileri ve sonrasinda kullanicagimiylari burda tanimliyoruz.
     @FXML
     private TableView tableView;
     @FXML
     private TextField tfFirstName, tfLastName, tfEmail,tfage;
-    //Bu listeyi Table view icin kullaniyoruz.
-    //kolonlari Lehre Objesiyle baglamak icin.
+
     @FXML
     private TableColumn<Lehre, String> clmVorname, clmName, clmEmail;
     @FXML
@@ -51,27 +42,18 @@ public class SecondaryController implements Initializable {
     private TableColumn<Lehre,Integer> clmAge;
 
     private Lehre updatelehre=new Lehre();
-private    RestTemplate restTemplate=new RestTemplate();
+
+    private final RestTemplate restTemplate=new RestTemplate();
+
     private final WebClient webClient = WebClient.builder().build();
 
+    private List<Lehre> list;
 
 
-
-    //ObservableList uzerinden bu arraylisti Tableview e ekliyoruz.
-    // bunun icin liste tanimlamamiz lazim ve bu listeyi Tableview
-    // Tableview ile ObservableList baglantili
-    // list ile de Tableview baglantili
-    private List list = new ArrayList();
-   // int row=0;
-
-
-    //  butun butanlari tanimliyoruz.
     @FXML
     private Button btnAdd, btnUpdate, btnDelete, btnSave;
 
 
-
-    //Add butonuna Click lendiginde yapicak islem.
     @FXML
     private void addAction() throws IOException, URISyntaxException {
 
@@ -83,13 +65,14 @@ private    RestTemplate restTemplate=new RestTemplate();
     }
 
     @FXML
-    private void saveAction() throws IOException {
+    private void saveAction() throws IOException ,URISyntaxException{
         updatelehre.setLastName( tfLastName.getText());
         updatelehre.setFirstName(tfFirstName.getText());
         updatelehre.setEmailId(tfEmail.getText());
-        list.set(Math.toIntExact(updatelehre.getId()),updatelehre);
-        ObservableList data = FXCollections.observableList(list);
-        tableView.setItems(data);
+        Integer codeValue = new WebClientStockClient(webClient).saveLehre(updatelehre).getStatusCodeValue();
+        System.out.println(codeValue);
+        fillTableView();
+
         clearField();
     }
 
@@ -105,46 +88,29 @@ private    RestTemplate restTemplate=new RestTemplate();
     }
 
     private void deleteClient(Lehre lehre){
-
         RestTemplateClient restClientTemplate = new RestTemplateClient(restTemplate);
         restClientTemplate.deleteEmployee(lehre);
-
-//        lehresData = FXCollections.observableList(lehreFlux).sorted();
-//        tableView.setItems(lehresData);
         fillTableView();
     }
 
-    //clm ile yazilanlar Tableview in icerisindeki kolonlar
-    //
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        //  Flux<Lehre> lehre = new WebClientStockClient(webClient).getLehreById(7L).take(1).log();
-
         tableView.setEditable(true);
         tableView.getSelectionModel().setCellSelectionEnabled(true);
-        //Lehre object icerisindeki field lar ile ayni olmasi gerekir
-        // kolonlarin hucrelerindeki degerler. Lehre Classinda ki degerler = ayni olacak
         clmVorname.setCellValueFactory(new PropertyValueFactory("firstName"));
         clmName.setCellValueFactory(new PropertyValueFactory("lastName"));
         clmEmail.setCellValueFactory(new PropertyValueFactory("emailId"));
         //  clmAge.setCellValueFactory(new PropertyValueFactory<Lehre,Integer>("age"));
 
         clmDelete.setCellFactory(ActionButtonTableCell.<Lehre>forTableColumn("Delete", (Lehre p) -> {
-deleteClient(p);
-
-
+        deleteClient(p);
             return p;
         }));
-//        clmUpdate.setCellFactory(ActionButtonTableCell.<Lehre>forTableColumn("Update", (Lehre p) -> {
-//
-//            TablePosition pos = (TablePosition) tableView.getSelectionModel().getSelectedCells().get(0);
-//            int row = pos.getRow();
-//            fillUpdate(p);
-//            System.out.println(row);
-//            p.setId(row);
-//            return p;
-//        }));
+        clmUpdate.setCellFactory(ActionButtonTableCell.<Lehre>forTableColumn("Update", (Lehre p) -> {
+            fillUpdate(p);
+            return p;
+        }));
         tableView.getItems().setAll(lehresData);
         tableView.getColumns().setAll(clmVorname, clmName, clmEmail,clmAge,clmDelete,clmUpdate);
         fillTableView();
