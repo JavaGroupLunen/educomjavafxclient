@@ -1,7 +1,3 @@
 
-8
-java:S3878&"Remove this array creation.(ÅşÎ8Ì‰º¥¶.
-b
-java:S1128"@Remove this unused import 'org.springframework.http.HttpMethod'.(Ê¨Ä¡øÿÿÿÿ8Ì‰º¥¶.
-U	java:S106."9Replace this use of System.out or System.err by a logger.(®òßï8¸…§¥¶.
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(÷¸Ø§ûÿÿÿÿ8åïÍ¤¶.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(÷¸Ø§ûÿÿÿÿ8åïÍ¤¶.
+U	java:S106,"9Replace this use of System.out or System.err by a logger.(®òßï8¸…§¥¶.

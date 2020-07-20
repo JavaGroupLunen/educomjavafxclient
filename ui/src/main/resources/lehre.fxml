@@ -36,15 +36,15 @@
          <children>
             <HBox prefHeight="82.0" prefWidth="452.0">
                <children>
-                  <RadioButton mnemonicParsing="false" text="Vorname" />
+                  <RadioButton fx:id="rbtVorname" mnemonicParsing="false" text="Vorname" />
                   <Separator orientation="VERTICAL" prefHeight="28.0" prefWidth="45.0" />
-                  <RadioButton mnemonicParsing="false" text="Name" />
+                  <RadioButton fx:id="rbtNachname" mnemonicParsing="false" text="Name" />
                   <Separator orientation="VERTICAL" prefHeight="28.0" prefWidth="45.0" />
-                  <RadioButton mnemonicParsing="false" text="email" />
+                  <RadioButton fx:id="rbtEmailId" mnemonicParsing="false" text="email" />
                </children>
             </HBox>
             <Label text="Search" />
-            <TextField prefHeight="25.0" prefWidth="202.0" />
+            <TextField fx:id="tfSearch" prefHeight="25.0" prefWidth="202.0" />
             <TableView fx:id="tableView" prefHeight="579.0" prefWidth="335.0">
               <columns>
                   <TableColumn fx:id="clmVorname" prefWidth="75.0" text="Vorname" />

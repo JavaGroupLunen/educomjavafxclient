@@ -14,5 +14,5 @@ Kclient/src/main/java/com/educom/restclient/client/WebClientStockClient.java,1/
 Nclient/src/main/java/com/educom/restclient/client/ClientAutoConfiguration.java,f/f/ff394ba109de57e2d68817e15c3467b711d74b69
 y
 Iclient/src/main/java/com/educom/restclient/client/RestTemplateClient.java,e/2/e286aa99ed16f5ba0ef4935ac41ffbcf45a0ebaa
-g
-7ui/src/main/java/com/educom/ui/SecondaryController.java,1/b/1b0dce6b92c6d91409276094550d85dc3cf5e6b7
+c
+3ui/src/main/java/com/educom/ui/LehreController.java,1/1/112f0ef43f245f31a0f099c40bb8427c64df8e02

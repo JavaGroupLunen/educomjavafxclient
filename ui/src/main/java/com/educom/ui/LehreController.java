@@ -4,6 +4,8 @@ package com.educom.ui;
 import com.educom.restclient.client.RestTemplateClient;
 import com.educom.restclient.client.WebClientStockClient;
 import com.educom.restclient.model.Lehre;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,7 +20,6 @@ import util.ActionButtonTableCell;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -27,29 +28,27 @@ import static javafx.collections.FXCollections.observableArrayList;
 
 @Component
 public class LehreController implements Initializable {
-    private  ObservableList<Lehre> lehresData = observableArrayList();
+    private final RestTemplate restTemplate = new RestTemplate();
 
     @FXML
     private TableView tableView;
-    @FXML
-    private TextField tfFirstName, tfLastName, tfEmail,tfage;
+    private ObservableList<Lehre> lehresData = observableArrayList();
 
     @FXML
     private TableColumn<Lehre, String> clmVorname, clmName, clmEmail;
     @FXML
-    private  TableColumn  clmDelete,clmUpdate;
+    private TextField tfFirstName, tfLastName, tfEmail, tfage, tfSearch;
     @FXML
-    private TableColumn<Lehre,Integer> clmAge;
-
-    private Lehre updatelehre=new Lehre();
-
-    private final RestTemplate restTemplate=new RestTemplate();
+    private TableColumn clmDelete, clmUpdate;
+    @FXML
+    private TableColumn<Lehre, Integer> clmAge;
+    private final Lehre updatelehre = new Lehre();
 
     private final WebClient webClient = WebClient.builder().build();
+    private List<Lehre> list = null;
 
-    private List<Lehre> list;
-
-
+    @FXML
+    private RadioButton rbtVorname, rbtNachname, rbtEmailId;
     @FXML
     private Button btnAdd, btnUpdate, btnDelete, btnSave;
 
@@ -60,19 +59,20 @@ public class LehreController implements Initializable {
         Lehre lehre = new Lehre(tfFirstName.getText(), tfLastName.getText(), tfEmail.getText());
         Integer codeValue = new WebClientStockClient(webClient).saveLehre(lehre).getStatusCodeValue();
         System.out.println(codeValue);
-        fillTableView();
+        getAllLehre();
+        fillTableview();
         clearField();
     }
 
     @FXML
-    private void saveAction() throws IOException ,URISyntaxException{
-        updatelehre.setLastName( tfLastName.getText());
+    private void saveAction() throws IOException ,URISyntaxException {
+        updatelehre.setLastName(tfLastName.getText());
         updatelehre.setFirstName(tfFirstName.getText());
         updatelehre.setEmailId(tfEmail.getText());
         Integer codeValue = new WebClientStockClient(webClient).saveLehre(updatelehre).getStatusCodeValue();
         System.out.println(codeValue);
-        fillTableView();
-
+        getAllLehre();
+        fillTableview();
         clearField();
     }
 
@@ -81,21 +81,43 @@ public class LehreController implements Initializable {
 
     }
 
-    private void fillTableView() {
-        List<Lehre> lehrelist = new WebClientStockClient(webClient).getLehreList().collectList().block();
-        lehresData = FXCollections.observableList(lehrelist).sorted();
+    private void getAllLehre() {
+        list = new WebClientStockClient(webClient).getLehreList().collectList().block();
+
+    }
+
+    private void fillTableview() {
+        if(tfSearch.getText().strip().isEmpty()){
+            getAllLehre();
+        }
+
+        lehresData = FXCollections.observableList(list).sorted();
         tableView.setItems(lehresData);
     }
 
-    private void deleteClient(Lehre lehre){
+    private void deleteClient(Lehre lehre) {
         RestTemplateClient restClientTemplate = new RestTemplateClient(restTemplate);
         restClientTemplate.deleteEmployee(lehre);
-        fillTableView();
+        getAllLehre();
+        fillTableview();
     }
+
+    private void findBy(String param) {
+        RestTemplateClient restClientTemplate = new RestTemplateClient(restTemplate);
+        if (rbtVorname.isSelected()) {
+            list = restClientTemplate.findByName(param);
+
+        } else if (rbtNachname.isSelected()) {
+            list = restClientTemplate.findByLastName(param);
+
+        } else if (rbtEmailId.isSelected()) {
+            list = restClientTemplate.findByEmailId(param);
+        }
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         tableView.setEditable(true);
         tableView.getSelectionModel().setCellSelectionEnabled(true);
         clmVorname.setCellValueFactory(new PropertyValueFactory("firstName"));
@@ -104,7 +126,7 @@ public class LehreController implements Initializable {
         //  clmAge.setCellValueFactory(new PropertyValueFactory<Lehre,Integer>("age"));
 
         clmDelete.setCellFactory(ActionButtonTableCell.<Lehre>forTableColumn("Delete", (Lehre p) -> {
-        deleteClient(p);
+            deleteClient(p);
             return p;
         }));
         clmUpdate.setCellFactory(ActionButtonTableCell.<Lehre>forTableColumn("Update", (Lehre p) -> {
@@ -112,8 +134,29 @@ public class LehreController implements Initializable {
             return p;
         }));
         tableView.getItems().setAll(lehresData);
-        tableView.getColumns().setAll(clmVorname, clmName, clmEmail,clmAge,clmDelete,clmUpdate);
-        fillTableView();
+        tableView.getColumns().setAll(clmVorname, clmName, clmEmail, clmAge, clmDelete, clmUpdate);
+      //  getAllLehre();
+
+        fillTableview();
+        tfSearch.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable,
+                                String oldValue, String newValue) {
+
+                System.out.println(" Text Changed to  " + newValue + "\n");
+                if (!newValue.strip().isEmpty()) {
+                    findBy(newValue);
+
+                }
+                fillTableview();
+
+            }
+        });
+
+        ToggleGroup searchGroup = new ToggleGroup();
+        rbtEmailId.setToggleGroup(searchGroup);
+        rbtVorname.setToggleGroup(searchGroup);
+        rbtNachname.setToggleGroup(searchGroup);
 
     }
 

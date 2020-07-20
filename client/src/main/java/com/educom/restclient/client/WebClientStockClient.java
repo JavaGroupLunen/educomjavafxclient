@@ -48,16 +48,16 @@ public class WebClientStockClient implements StockClient {
                         e -> log.info(() -> "Closing stream for " + ". Received " + e.getMessage()));
     }
 
-    @Override
-    public Flux<Lehre> save(Lehre lehre) {
-        return webClient.post()
-                .uri("localhost:8080/api/lehre")
-                .retrieve()
-                .bodyToFlux(Lehre.class)
-                .retryBackoff(5, Duration.ofSeconds(1), Duration.ofSeconds(5))
-                .doOnError(IOException.class,
-                        e -> log.info(() -> "Closing stream for " + ". Received " + e.getMessage()));
-    }
+
+//    public Flux<Lehre> save(Lehre lehre) {
+//        return webClient.post()
+//                .uri("localhost:8080/api/lehre")
+//                .retrieve()
+//                .bodyToFlux(Lehre.class)
+//                .retryBackoff(5, Duration.ofSeconds(1), Duration.ofSeconds(5))
+//                .doOnError(IOException.class,
+//                        e -> log.info(() -> "Closing stream for " + ". Received " + e.getMessage()));
+//    }
 
     @Override
     public Flux<Lehre>  delete(Lehre lehre) {
@@ -73,8 +73,8 @@ public class WebClientStockClient implements StockClient {
 
 
     }
-
-    public ResponseEntity<String> saveLehre(Lehre lehre) throws URISyntaxException {
+    @Override
+    public ResponseEntity<String> saveLehre(Lehre lehre)  {
         RestTemplate restTemplate = new RestTemplate();
 
         URI uri = null;
@@ -88,4 +88,8 @@ public class WebClientStockClient implements StockClient {
         ResponseEntity<String> result = restTemplate.postForEntity(uri, lehre, String.class);
         return result;
     }
+
+
+
+
 }
