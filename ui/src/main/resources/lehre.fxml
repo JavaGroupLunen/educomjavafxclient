@@ -27,8 +27,14 @@
              <Label text="Age" />
              <TextField fx:id="tfage" />
 
-             <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#addAction" text="Add" />
-             <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveAction" text="Save" />
+             <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#addAction" prefHeight="26.0" prefWidth="91.0" text="Add">
+               <VBox.margin>
+                  <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+               </VBox.margin></Button>
+             <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveAction" prefHeight="26.0" prefWidth="91.0" text="Save">
+               <VBox.margin>
+                  <Insets left="4.0" right="4.0" top="4.0" />
+               </VBox.margin></Button>
 
          </children>
       </VBox>

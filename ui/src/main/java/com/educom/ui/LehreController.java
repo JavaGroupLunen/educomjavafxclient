@@ -122,7 +122,8 @@ public class LehreController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        btnAdd.getStyleClass().add("button-raised");
+        btnSave.getStyleClass().add("button-raised");
         tableView.setEditable(true);
         tableView.getSelectionModel().setCellSelectionEnabled(true);
         clmVorname.setCellValueFactory(new PropertyValueFactory("firstName"));
