@@ -9,7 +9,7 @@ import java.util.*;
 
 public class RestTemplateClient {
 
-    static final String URL_UPDATE_LEHRE = "http://localhost:8080/api/lehre";
+    static final String URL_UPDATE_LEHRE = "http://localhost:8080/api/updatelehre";
     @Autowired
     RestTemplate restTemplate;
 
@@ -61,26 +61,25 @@ public class RestTemplateClient {
 
     }
 
-
-    public String updateLehre(Lehre lehre) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
-        HttpEntity<Lehre> requestBody = new HttpEntity<>(lehre, headers);
-
-        // Send request with PUT method.
-        restTemplate.put(URL_UPDATE_LEHRE, requestBody);
-
-        String resourceUrl = URL_UPDATE_LEHRE + "/" + lehre.getId();
-
-
-        Lehre e = restTemplate.getForObject(resourceUrl, Lehre.class);
-
-        if (e != null) {
-            System.out.println("(Client side) Employee after update: ");
-            return "Employee: " + e.getId() + " - " + e.getEmailId();
-        }
-        return "not successfull";
-    }
+//
+//    public String updateLehre(Lehre lehre) {
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
+//        HttpEntity<Lehre> requestBody = new HttpEntity<>(lehre, headers);
+//
+//        // Send request with PUT method.
+//        restTemplate.put(URL_UPDATE_LEHRE, requestBody);
+//        String resourceUrl = URL_UPDATE_LEHRE + "/" + lehre.getId();
+//
+//
+//        Lehre e = restTemplate.getForObject(resourceUrl, Lehre.class);
+//
+//        if (e != null) {
+//            System.out.println("(Client side) Employee after update: ");
+//            return "Employee: " + e.getId() + " - " + e.getEmailId();
+//        }
+//        return "not successfull";
+//    }
 
 
 

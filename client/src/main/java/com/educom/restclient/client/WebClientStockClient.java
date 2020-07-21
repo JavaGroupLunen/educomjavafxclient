@@ -49,15 +49,15 @@ public class WebClientStockClient implements StockClient {
     }
 
 
-//    public Flux<Lehre> save(Lehre lehre) {
-//        return webClient.post()
-//                .uri("localhost:8080/api/lehre")
-//                .retrieve()
-//                .bodyToFlux(Lehre.class)
-//                .retryBackoff(5, Duration.ofSeconds(1), Duration.ofSeconds(5))
-//                .doOnError(IOException.class,
-//                        e -> log.info(() -> "Closing stream for " + ". Received " + e.getMessage()));
-//    }
+    public Flux<Lehre> updateLehre(Lehre lehre,Long id) {
+        return webClient.put()
+                .uri("localhost:8080/api/updatelehre/{id}",id)
+                .retrieve()
+                .bodyToFlux(Lehre.class)
+                .retryBackoff(5, Duration.ofSeconds(1), Duration.ofSeconds(5))
+                .doOnError(IOException.class,
+                        e -> log.info(() -> "Closing stream for " + ". Received " + e.getMessage()));
+    }
 
     @Override
     public Flux<Lehre>  delete(Lehre lehre) {

@@ -5,19 +5,25 @@ import com.educom.restclient.client.RestTemplateClient;
 import com.educom.restclient.client.WebClientStockClient;
 import com.educom.restclient.model.Lehre;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXSlider;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RequiredFieldValidator;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Orientation;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 import util.ActionButtonTableCell;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -73,8 +79,7 @@ public class LehreController implements Initializable {
         updatelehre.setLastName(tfLastName.getText());
         updatelehre.setFirstName(tfFirstName.getText());
         updatelehre.setEmailId(tfEmail.getText());
-        Integer codeValue = new WebClientStockClient(webClient).saveLehre(updatelehre).getStatusCodeValue();
-        System.out.println(codeValue);
+        Flux<Lehre> codeValue = new WebClientStockClient(webClient).updateLehre(updatelehre,updatelehre.getId()).log();
         getAllLehre();
         fillTableview();
         clearField();
@@ -82,6 +87,7 @@ public class LehreController implements Initializable {
 
     @FXML
     private void switchToPrimary() throws IOException {
+
 
     }
 
