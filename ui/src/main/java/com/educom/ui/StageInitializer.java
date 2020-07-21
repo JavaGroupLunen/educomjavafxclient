@@ -36,8 +36,11 @@ public class StageInitializer implements ApplicationListener<StockChartApplicati
             fxmlLoader.setControllerFactory(aClass -> this.applicationContext.getBean(aClass));
 
             Parent load = fxmlLoader.load();
-            stage.setScene(new Scene(load, 800, 600));
+            Scene scene=new Scene(load, 800, 600);
+            scene.getStylesheets().add("/ui.css");
+            stage.setScene(scene);
             stage.setTitle(applicationTitle);
+
 
             stage.show();
 

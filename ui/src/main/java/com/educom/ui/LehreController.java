@@ -4,6 +4,7 @@ package com.educom.ui;
 import com.educom.restclient.client.RestTemplateClient;
 import com.educom.restclient.client.WebClientStockClient;
 import com.educom.restclient.model.Lehre;
+import com.jfoenix.controls.JFXButton;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -64,6 +65,9 @@ public class LehreController implements Initializable {
         clearField();
     }
 
+
+
+
     @FXML
     private void saveAction() throws IOException ,URISyntaxException {
         updatelehre.setLastName(tfLastName.getText());
@@ -118,6 +122,7 @@ public class LehreController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         tableView.setEditable(true);
         tableView.getSelectionModel().setCellSelectionEnabled(true);
         clmVorname.setCellValueFactory(new PropertyValueFactory("firstName"));
