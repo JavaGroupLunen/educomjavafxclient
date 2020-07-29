@@ -49,7 +49,7 @@ public class LehreController implements Initializable {
     private TableColumn clmDelete, clmUpdate;
     @FXML
     private TableColumn<Lehre, Integer> clmAge;
-    private final Lehre updatelehre = new Lehre();
+
 
     private final WebClient webClient = WebClient.builder().build();
     private List<Lehre> list = null;
@@ -58,7 +58,7 @@ public class LehreController implements Initializable {
     private RadioButton rbtVorname, rbtNachname, rbtEmailId;
     @FXML
     private Button btnAdd, btnUpdate, btnDelete, btnSave;
-
+    private Long updatedLehreId;
 
     @FXML
     private void addAction() throws IOException, URISyntaxException {
@@ -72,14 +72,14 @@ public class LehreController implements Initializable {
     }
 
 
-
-
     @FXML
     private void saveAction() throws IOException ,URISyntaxException {
-        updatelehre.setLastName(tfLastName.getText());
-        updatelehre.setFirstName(tfFirstName.getText());
-        updatelehre.setEmailId(tfEmail.getText());
-        Flux<Lehre> codeValue = new WebClientStockClient(webClient).updateLehre(updatelehre,updatelehre.getId()).log();
+        Lehre updatedLehre=new Lehre();
+        updatedLehre.setLastName(tfLastName.getText());
+        updatedLehre.setFirstName(tfFirstName.getText());
+        updatedLehre.setEmailId(tfEmail.getText());
+        RestTemplateClient restClientTemplate = new RestTemplateClient(restTemplate);
+        restClientTemplate.updateLehre(getUpdatedLehreId(),updatedLehre);
         getAllLehre();
         fillTableview();
         clearField();
@@ -142,7 +142,8 @@ public class LehreController implements Initializable {
             return p;
         }));
         clmUpdate.setCellFactory(ActionButtonTableCell.<Lehre>forTableColumn("Update", (Lehre p) -> {
-            fillUpdate(p);
+            fillFieldForUpdate(p);
+            setUpdatedLehreId(p.getId());
             return p;
         }));
         tableView.getItems().setAll(lehresData);
@@ -177,12 +178,16 @@ public class LehreController implements Initializable {
         tfLastName.setText("");
         tfEmail.setText("");
     }
-
-    private void fillUpdate(Lehre p){
+private void setUpdatedLehreId(Long id){
+        this.updatedLehreId=id;
+}
+private Long getUpdatedLehreId(){
+        return updatedLehreId;
+}
+    private void fillFieldForUpdate(Lehre p){
         tfFirstName.setText(p.getFirstName());
         tfLastName.setText(p.getLastName());
         tfEmail.setText(p.getEmailId());
-        updatelehre.setId(p.getId());
     }
 
 
