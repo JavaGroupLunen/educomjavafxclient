@@ -1,2 +1,0 @@
-# magic which enables me to use the configuration from Client in UI
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\  com.educom.restclient.client.ClientAutoConfiguration
