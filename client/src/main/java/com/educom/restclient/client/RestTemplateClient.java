@@ -9,7 +9,11 @@ import java.util.*;
 
 public class RestTemplateClient {
 
-    static final String URL_UPDATE_LEHRE = "http://localhost:8082/api/updatelehre/{id}";
+    static final String URL_UPDATE_LEHRE = "http://localhost:8082/api/lehre/updatelehre/{id}";
+    static final String URL_FINDBYLASTNAME="http://localhost:8082/api/lehre/findByLastName/{lastname}";
+    static final String URL_FINDBYFIRSNAME="http://localhost:8082/api/lehre/findByName/{firstname}";
+    static final String URL_FINDBYEMAIL= "http://localhost:8082/api/lehre/findByEmailId/{emailId}";
+    static final String URL_DELETEBYID="http://localhost:8082/api/lehre/deletebyId/{id}";
     @Autowired
     RestTemplate restTemplate;
 
@@ -18,8 +22,7 @@ public class RestTemplateClient {
     }
 
     public void deleteEmployee(Lehre lehre) {
-
-        final String uri = "http://localhost:8082/api/deletebyId/{id}";
+        final String uri =URL_DELETEBYID;
         Map<String, String> params = new HashMap<>();
         params.put("id", String.valueOf(lehre.getId()));
         restTemplate.delete(uri, params);
@@ -27,10 +30,8 @@ public class RestTemplateClient {
     }
 
    public List<Lehre> findByEmailId(String emailId){
-
-       final String uri = "http://localhost:8082/api/findByEmailId/{emailId}";
+       final String uri = URL_FINDBYEMAIL;
        Map<String, String> urlParameters = new HashMap<>();
-    //   urlParameters.put("page", Integer.toString(page));
        urlParameters.put("emailId", emailId);
        ResponseEntity<Lehre[]> entity = restTemplate.getForEntity(uri,
                Lehre[].class,
@@ -39,8 +40,7 @@ public class RestTemplateClient {
 
    }
     public List<Lehre> findByName(String firstname){
-
-        final String uri = "http://localhost:8082/api/findByName/{firstname}";
+        final String uri =URL_FINDBYFIRSNAME;
         Map<String, String> urlParameters = new HashMap<>();
         urlParameters.put("firstname", firstname);
         ResponseEntity<Lehre[]> entity = restTemplate.getForEntity(uri,
@@ -51,7 +51,7 @@ public class RestTemplateClient {
     }
     public List<Lehre> findByLastName(String lastname){
 
-        final String uri = "http://localhost:8082/api/findByLastName/{lastname}";
+        final String uri = URL_FINDBYLASTNAME;
         Map<String, String> urlParameters = new HashMap<>();
         urlParameters.put("lastname", lastname);
         ResponseEntity<Lehre[]> entity = restTemplate.getForEntity(uri,

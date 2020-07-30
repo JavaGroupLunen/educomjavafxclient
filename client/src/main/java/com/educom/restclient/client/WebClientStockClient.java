@@ -26,7 +26,7 @@ public class WebClientStockClient implements StockClient {
     public Flux<Lehre> getLehreById(Long id) {
         log.info("WebClientStockClient");
         return webClient.get()
-                .uri("localhost:8082/api/getbyId/{id}", id)
+                .uri("localhost:8082/api/lehre/getbyId/{id}", id)
                 .retrieve()
                 .bodyToFlux(Lehre.class)
                 .retryBackoff(5, Duration.ofSeconds(1), Duration.ofSeconds(5))
@@ -38,7 +38,7 @@ public class WebClientStockClient implements StockClient {
     public Flux<Lehre> getLehreList() {
         log.info("WebClientStockClient");
         return webClient.get()
-                .uri("localhost:8082/api/lehrelist")
+                .uri("localhost:8082/api/lehre/lehrelist")
                 .retrieve()
                 .bodyToFlux(Lehre.class)
                 .retryBackoff(5, Duration.ofSeconds(1), Duration.ofSeconds(5))
@@ -61,7 +61,7 @@ public class WebClientStockClient implements StockClient {
     public Flux<Lehre>  delete(Lehre lehre) {
         log.info("WebClientStockClient");
         return webClient.delete()
-                .uri("localhost:8082/api/deletebyId/{id}", lehre.getId())
+                .uri("localhost:8082/api/lehre/deletebyId/{id}", lehre.getId())
                 .retrieve()
                 .bodyToFlux(Lehre.class)
                 .retryBackoff(5, Duration.ofSeconds(1), Duration.ofSeconds(5))
@@ -77,7 +77,7 @@ public class WebClientStockClient implements StockClient {
 
         URI uri = null;
         try {
-            final String baseUrl = "http://localhost:8082/api/lehre";
+            final String baseUrl = "http://localhost:8082/api/lehre/lehre";
             uri = new URI(baseUrl);
         } catch (URISyntaxException e) {
             e.printStackTrace();        }
