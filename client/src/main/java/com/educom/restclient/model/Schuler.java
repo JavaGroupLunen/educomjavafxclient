@@ -1,25 +1,19 @@
 package com.educom.restclient.model;
 
 
-import lombok.Data;
-
 import java.util.HashSet;
 import java.util.Set;
 
 
-@Data
 public class Schuler extends Person{
     private long id;
     private String vater;
     private String mutter;
-
-
     private  Schule schule;
-
     private Set<Kurs> kurses = new HashSet<>();
 
-    public Schuler(long id, String vater, String mutter, Schule schule, Set<Kurs> kurses) {
-        this.id = id;
+    public Schuler(String vater, String mutter, Schule schule, Set<Kurs> kurses) {
+
         this.vater = vater;
         this.mutter = mutter;
         this.schule = schule;
@@ -34,6 +28,7 @@ public class Schuler extends Person{
     public Schuler() {
     }
 
+    @Override
     public long getId() {
         return id;
     }

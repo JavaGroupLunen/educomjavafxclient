@@ -61,7 +61,6 @@ public class SchulerController implements Initializable {
         schuler.setEmail(tfEmail.getText());
         schulerClient = new SchulerClient(restTemplate);
         schulerClient.add(schuler);
-        System.out.println(schuler.getFirstName());
         getAllSchuler();
         fillTableview();
         clearField();
@@ -74,8 +73,8 @@ public class SchulerController implements Initializable {
         updatedSchuler.setLastName(tfLastName.getText());
         updatedSchuler.setFirstName(tfFirstName.getText());
         updatedSchuler.setEmail(tfEmail.getText());
-      //  SchulerClient restClientTemplate = new SchulerClient(restTemplate);
-        schulerClient.updateschuler(updatedSchulerId,updatedSchuler);
+        schulerClient = new SchulerClient(restTemplate);
+        schulerClient.updateschuler(getUpdatedSchulerId(),updatedSchuler);
         getAllSchuler();
         fillTableview();
         clearField();
@@ -140,7 +139,7 @@ public class SchulerController implements Initializable {
         }));
         tableView.getItems().setAll(SchulersData);
         tableView.getColumns().setAll(clmVorname, clmName, clmEmail, clmAge, clmDelete, clmUpdate);
-        //  getAllSchuler();
+
 
         fillTableview();
         tfSearch.textProperty().addListener(new ChangeListener<String>() {
@@ -180,6 +179,7 @@ public class SchulerController implements Initializable {
     }
 
     private void fillFieldForUpdate(Schuler p) {
+        setUpdatedSchulerId(p.getId());
         tfFirstName.setText(p.getFirstName());
         tfLastName.setText(p.getLastName());
         tfEmail.setText(p.getEmail());
