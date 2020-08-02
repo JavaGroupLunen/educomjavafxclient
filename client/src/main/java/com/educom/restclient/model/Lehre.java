@@ -1,13 +1,7 @@
 package com.educom.restclient.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 
-@Data
-@ToString
 public class Lehre {
     private Long id;
     private String firstName;

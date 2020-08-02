@@ -1,6 +1,7 @@
 package com.educom.restclient.client;
 
 import com.educom.restclient.model.Lehre;
+import com.educom.restclient.model.Schuler;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
@@ -46,16 +47,17 @@ public class WebClientStockClient implements StockClient {
                         e -> log.info(() -> "Closing stream for " + ". Received " + e.getMessage()));
     }
 
+    public Flux<Schuler> getSchulerList() {
+        log.info("WebClientStockClient");
+        return webClient.get()
+                .uri("localhost:8082/api/schuler/schulerlist")
+                .retrieve()
+                .bodyToFlux(Schuler.class)
+                .retryBackoff(5, Duration.ofSeconds(1), Duration.ofSeconds(5))
+                .doOnError(IOException.class,
+                        e -> log.info(() -> "Closing stream for " + ". Received " + e.getMessage()));
+    }
 
-//    public Flux<Lehre> updateLehre(Lehre lehre,Long id) {
-//        return webClient.put()
-//                .uri("localhost:8082/api/updatelehre/{id}",id)
-//                .retrieve()
-//                .bodyToFlux(Lehre.class)
-//                .retryBackoff(5, Duration.ofSeconds(1), Duration.ofSeconds(5))
-//                .doOnError(IOException.class,
-//                        e -> log.info(() -> "Closing stream for " + ". Received " + e.getMessage()));
-//    }
 
     @Override
     public Flux<Lehre>  delete(Lehre lehre) {

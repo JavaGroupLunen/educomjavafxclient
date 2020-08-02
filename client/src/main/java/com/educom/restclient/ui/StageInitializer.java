@@ -15,7 +15,7 @@ import java.io.IOException;
 @Component
 public class StageInitializer implements ApplicationListener<StockChartApplication.StageReadyEvent> {
 
-    @Value("classpath:/lehre.fxml")
+    @Value("classpath:/schuler.fxml")
     private Resource chartResource;
     private ApplicationContext applicationContext;
     private String applicationTitle;
@@ -34,7 +34,7 @@ public class StageInitializer implements ApplicationListener<StockChartApplicati
             FXMLLoader fxmlLoader = new FXMLLoader(getChartResource().getURL());
             fxmlLoader.setControllerFactory(aClass -> this.applicationContext.getBean(aClass));
             Parent load = fxmlLoader.load();
-            Scene scene=new Scene(load, 800, 600);
+            Scene scene=new Scene(load, 1200, 600);
             scene.getStylesheets().add("/ui.css");
             stage.setScene(scene);
             stage.setTitle(applicationTitle);

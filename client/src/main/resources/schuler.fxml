@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1163.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.educom.restclient.ui.controller.LehreController">
+<AnchorPane prefHeight="600.0" prefWidth="1163.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.educom.restclient.ui.controller.SchulerController">
    <children>
       <HBox prefHeight="600.0" prefWidth="1163.0">
          <children>
@@ -103,7 +103,7 @@
                         <children>
                             <RadioButton fx:id="rbtVorname" mnemonicParsing="false" prefHeight="18.0" prefWidth="210.0" text="Vorname" />
                             <RadioButton fx:id="rbtNachname" mnemonicParsing="false" prefHeight="18.0" prefWidth="226.0" text="Name" />
-                            <RadioButton fx:id="rbtEmailId" mnemonicParsing="false" prefHeight="18.0" prefWidth="136.0" text="email" />
+                            <RadioButton fx:id="rbtEmail" mnemonicParsing="false" prefHeight="18.0" prefWidth="136.0" text="email" />
                         </children>
                     </HBox>
                   <VBox prefHeight="483.0" prefWidth="344.0" spacing="10.0" GridPane.rowIndex="3">
@@ -137,7 +137,7 @@
                      </padding>
                   </VBox>
                   <ImageView fx:id="imvprofilphoto" cache="true" fitHeight="130.0" fitWidth="199.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" />
-                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="404.0" style="-fx-background-color: #4F664;" text="Lehrer Details" textAlignment="CENTER" textFill="#3f2b63" GridPane.rowIndex="2">
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="404.0" style="-fx-background-color: #4F664;" text="Schuler Details" textAlignment="CENTER" textFill="#3f2b63" GridPane.rowIndex="2">
                      <font>
                         <Font name="DejaVu Serif Bold" size="18.0" />
                      </font>

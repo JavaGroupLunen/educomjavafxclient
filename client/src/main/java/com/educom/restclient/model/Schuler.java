@@ -1,55 +1,77 @@
 package com.educom.restclient.model;
 
-import java.util.List;
+
+import lombok.Data;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
-public class Schuler {
-
+@Data
+public class Schuler extends Person{
     private long id;
+    private String vater;
+    private String mutter;
 
-    private String firstName;
 
-    private String lastName;
+    private  Schule schule;
 
-    private String emailId;
+    private Set<Kurs> kurses = new HashSet<>();
 
-    private List<Kurs> kursList;
+    public Schuler(long id, String vater, String mutter, Schule schule, Set<Kurs> kurses) {
+        this.id = id;
+        this.vater = vater;
+        this.mutter = mutter;
+        this.schule = schule;
+        this.kurses = kurses;
+    }
 
-    public Schuler(String firstName, String lastName, String emailId) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.emailId = emailId;
+    public Schuler(String vater, String mutter) {
+        this.vater = vater;
+        this.mutter = mutter;
+    }
+
+    public Schuler() {
     }
 
     public long getId() {
         return id;
     }
 
+    @Override
     public void setId(long id) {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getVater() {
+        return vater;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setVater(String vater) {
+        this.vater = vater;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getMutter() {
+        return mutter;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setMutter(String mutter) {
+        this.mutter = mutter;
     }
 
-    public String getEmailId() {
-        return emailId;
+    public Schule getSchule() {
+        return schule;
     }
 
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
+    public void setSchule(Schule schule) {
+        this.schule = schule;
+    }
+
+    public Set<Kurs> getKurses() {
+        return kurses;
+    }
+
+    public void setKurses(Set<Kurs> kurses) {
+        this.kurses = kurses;
     }
 }

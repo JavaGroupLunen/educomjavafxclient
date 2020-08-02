@@ -1,4 +1,4 @@
-package com.educom.restclient.ui;
+package com.educom.restclient.ui.controller;
 
 
 import com.educom.restclient.client.RestTemplateClient;
@@ -30,7 +30,6 @@ import static javafx.collections.FXCollections.observableArrayList;
 @Component
 public class LehreController implements Initializable {
     private final RestTemplate restTemplate = new RestTemplate();
-
     @FXML
     private TableView tableView;
     private ObservableList<Lehre> lehresData = observableArrayList();
@@ -43,11 +42,8 @@ public class LehreController implements Initializable {
     private TableColumn clmDelete, clmUpdate;
     @FXML
     private TableColumn<Lehre, Integer> clmAge;
-
-
     private final WebClient webClient = WebClient.builder().build();
     private List<Lehre> list = null;
-
     @FXML
     private RadioButton rbtVorname, rbtNachname, rbtEmailId;
     @FXML
@@ -79,11 +75,6 @@ public class LehreController implements Initializable {
         clearField();
     }
 
-    @FXML
-    private void switchToPrimary() throws IOException {
-
-
-    }
 
     private void getAllLehre() {
         list = new WebClientStockClient(webClient).getLehreList().collectList().block();
