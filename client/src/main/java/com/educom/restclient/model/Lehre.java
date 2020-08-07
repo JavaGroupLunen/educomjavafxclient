@@ -6,7 +6,7 @@ public class Lehre {
     private Long id;
     private String firstName;
     private String lastName;
-    private String emailId;
+    private String email;
    // private Integer age;
 
 
@@ -34,27 +34,27 @@ public class Lehre {
         this.lastName = lastName;
     }
 
-    public String getEmailId() {
-        return emailId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public Lehre(String firstName, String lastName, String emailId) {
+    public Lehre(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.emailId = emailId;
+        this.email= email;
     }
 
     public Lehre() {
     }
 
-    public Lehre(Long id, String firstName, String lastName, String emailId) {
+    public Lehre(Long id, String firstName, String lastName, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.emailId = emailId;
+        this.email = email;
     }
 }

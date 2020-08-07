@@ -6,10 +6,10 @@ import java.util.Set;
 
 
 public class Schuler extends Person{
-    private long id;
+   // private long id;
     private String vater;
     private String mutter;
-    private  Schule schule;
+    private Schule schule;
     private Set<Kurs> kurses = new HashSet<>();
 
     public Schuler(String vater, String mutter, Schule schule, Set<Kurs> kurses) {
@@ -68,5 +68,26 @@ public class Schuler extends Person{
 
     public void setKurses(Set<Kurs> kurses) {
         this.kurses = kurses;
+    }
+
+    @Override
+    public String toString() {
+        return "Schuler{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", gender=" + gender +
+                ", geburstDatum=" + geburstDatum +
+                ", adres='" + adres + '\'' +
+                ", stadt='" + stadt + '\'' +
+                ", land='" + land + '\'' +
+                ", plz='" + plz + '\'' +
+                ", vater='" + vater + '\'' +
+                ", mutter='" + mutter + '\'' +
+                ", schule=" + schule +
+                ", kurses=" + kurses +
+                '}';
     }
 }

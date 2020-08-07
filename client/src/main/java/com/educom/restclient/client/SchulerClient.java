@@ -6,7 +6,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-import reactor.core.publisher.Flux;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -28,9 +27,7 @@ public class SchulerClient implements HttpService<Schuler> {
     RestTemplate restTemplate;
 
 
-
     public SchulerClient(RestTemplate restTemplate) {
-
         this.restTemplate = restTemplate;
 
     }
@@ -110,29 +107,5 @@ public class SchulerClient implements HttpService<Schuler> {
         return result;
     }
 
-    @Override
-    public Flux<Schuler> getById(Long id) {
-        log.info("WebClientStockClient");
-//        return webClient.get()
-//                .uri(URL_GETBYID, id)
-//                .retrieve()
-//                .bodyToFlux(Schuler.class)
-//                .retryBackoff(5, Duration.ofSeconds(1), Duration.ofSeconds(5))
-//                .doOnError(IOException.class,
-//                        e -> log.info(() -> "Closing stream for " + id + ". Received " + e.getMessage()));
-        return null;
-    }
 
-    @Override
-    public Flux<Schuler> getList() {
-        log.info("WebClientStockClient");
-//        return webClient.get()
-//                .uri(URL_SCHULERLIST)
-//                .retrieve()
-//                .bodyToFlux(Schuler.class)
-//                .retryBackoff(5, Duration.ofSeconds(1), Duration.ofSeconds(5))
-//                .doOnError(IOException.class,
-//                        e -> log.info(() -> "Closing stream for " + ". Received " + e.getMessage()));
-        return null;
-    }
 }

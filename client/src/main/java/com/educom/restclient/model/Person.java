@@ -4,17 +4,17 @@ package com.educom.restclient.model;
 import java.util.Date;
 
 public abstract class Person {
-   private long id;
-   private  String firstName;
-   private  String lastName ;
-   private  String email;
-    private String phoneNumber;
-    private Gender gender;
-    private Date geburstDatum;
-    private String address;
-    private String stadt;
-    private String land;
-    private String plz;
+    protected long id;
+    protected String firstName;
+    protected String lastName;
+    protected String email;
+    protected String phoneNumber;
+    protected Gender gender;
+    protected Date geburstDatum;
+    protected String adres;
+    protected String stadt;
+    protected String land;
+    protected String plz;
 
     public Person(long id, String firstName, String lastName, String email) {
         this.id = id;
@@ -79,15 +79,15 @@ public abstract class Person {
     }
 
     public void setGeburstDatum(Date geburstDatum) {
-        this.geburstDatum = geburstDatum;
+        this.geburstDatum = (geburstDatum);
     }
 
-    public String getAddress() {
-        return address;
+    public String getAdres() {
+        return adres;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAdres(String adres) {
+        this.adres = adres;
     }
 
     public String getStadt() {
@@ -112,5 +112,22 @@ public abstract class Person {
 
     public void setPlz(String plz) {
         this.plz = plz;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", gender=" + gender +
+                ", geburstDatum=" + geburstDatum +
+                ", adres='" + adres + '\'' +
+                ", stadt='" + stadt + '\'' +
+                ", land='" + land + '\'' +
+                ", plz='" + plz + '\'' +
+                '}';
     }
 }

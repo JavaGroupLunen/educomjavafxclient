@@ -27,6 +27,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-rsocket</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-test</artifactId>
@@ -52,6 +53,13 @@
 			<artifactId>jfoenix</artifactId>
 			<version>9.0.8</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.gluonhq</groupId>
+			<artifactId>charm-glisten</artifactId>
+			<version>6.0.2</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
@@ -72,7 +80,11 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.12</version>
         </dependency>
-<!--		<dependency>-->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+		</dependency>
+		<!--		<dependency>-->
 <!--			<groupId>org.springframework</groupId>-->
 <!--			<artifactId>spring-webflux</artifactId>-->
 <!--		</dependency>-->
@@ -93,11 +105,20 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
 					<target>11</target>
+					<source>11</source>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
+	<repositories>
+		<repository>
+			<id>charm-glisten</id>
+			<name>charm-glisten Repository</name>
+			<url>https://nexus.gluonhq.com/nexus/content/repositories/releases/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
 
 
 </project>

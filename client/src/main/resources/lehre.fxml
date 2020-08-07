@@ -1,81 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1163.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.educom.restclient.ui.controller.LehreController">
+<AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="1017.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.educom.restclient.ui.controller.LehreController">
    <children>
-      <HBox prefHeight="600.0" prefWidth="1163.0">
+      <HBox prefHeight="600.0" prefWidth="1012.0">
          <children>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
-               <top>
-                  <VBox alignment="CENTER" minHeight="600.0" minWidth="133.0" prefHeight="600.0" prefWidth="160.0" spacing="20.0" style="-fx-background-color: #3F2B63;" BorderPane.alignment="CENTER">
-                      <children>
-                        <TilePane accessibleText="Educom" prefHeight="38.0" prefWidth="164.0">
-                           <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="164.0" text="Educom" textAlignment="CENTER" textFill="#eeebeb">
-                                 <font>
-                                    <Font name="FreeMono Bold Oblique" size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </TilePane>
-                        <Button fx:id="btnLehre" alignment="CENTER" blendMode="LIGHTEN" contentDisplay="BOTTOM" mnemonicParsing="false" mouseTransparent="true" prefHeight="43.0" prefWidth="158.0" style="-fx-background-color: #3F2B63;" styleClass="sidebar-btn" text="Lehre" textAlignment="CENTER" textFill="#f2eeee" textOverrun="CENTER_ELLIPSIS">
-                           <font>
-                              <Font name="DejaVu Serif Bold" size="14.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets left="10.0" />
-                           </opaqueInsets>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <effect>
-                              <Blend />
-                           </effect>
-                        </Button>
-                          <Button fx:id="btnSchuler" alignment="CENTER" blendMode="LIGHTEN" contentDisplay="BOTTOM" mnemonicParsing="false" mouseTransparent="true" prefHeight="43.0" prefWidth="158.0" style="-fx-background-color: #3F2B63;" styleClass="sidebar-btn" text="Schuler" textFill="#f2eeee">
-                              <font>
-                                  <Font name="DejaVu Serif Bold" size="14.0" />
-                              </font>
-                              <opaqueInsets>
-                                  <Insets left="10.0" />
-                              </opaqueInsets>
-                          </Button>
-                          <Button fx:id="btnPerson" alignment="TOP_CENTER" blendMode="LIGHTEN" contentDisplay="BOTTOM" mnemonicParsing="false" mouseTransparent="true" prefHeight="43.0" prefWidth="158.0" style="-fx-background-color: #3F2B63;" styleClass="sidebar-btn" text="Person" textFill="#f2eeee">
-                              <font>
-                                  <Font name="DejaVu Serif Bold" size="14.0" />
-                              </font>
-                              <opaqueInsets>
-                                  <Insets left="10.0" />
-                              </opaqueInsets>
-                          </Button>
-                          <Button fx:id="btnKurs" alignment="TOP_CENTER" blendMode="LIGHTEN" contentDisplay="BOTTOM" layoutX="30.0" layoutY="383.0" mnemonicParsing="false" mouseTransparent="true" prefHeight="43.0" prefWidth="158.0" style="-fx-background-color: #3F2B63;" styleClass="sidebar-btn" text="Kurs" textFill="#f2eeee">
-                              <font>
-                                  <Font name="DejaVu Serif Bold" size="14.0" />
-                              </font>
-                              <opaqueInsets>
-                                  <Insets left="10.0" />
-                              </opaqueInsets>
-                          </Button>
-                          <Button fx:id="btnVertrag" alignment="TOP_CENTER" blendMode="LIGHTEN" contentDisplay="BOTTOM" mnemonicParsing="false" mouseTransparent="true" prefHeight="43.0" prefWidth="158.0" style="-fx-background-color: #3F2B63;" text="Vertrag" textFill="#f2eeee">
-                              <font>
-                                  <Font name="DejaVu Serif Bold" size="14.0" />
-                              </font>
-                              <opaqueInsets>
-                                  <Insets left="10.0" />
-                              </opaqueInsets>
-                          </Button>
-      
-                      </children>
-                  </VBox>
-               </top>
-            </BorderPane>
             <GridPane alignment="BASELINE_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="462.0" prefWidth="1013.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="498.0" minWidth="10.0" prefWidth="416.0" />
@@ -103,7 +48,7 @@
                         <children>
                             <RadioButton fx:id="rbtVorname" mnemonicParsing="false" prefHeight="18.0" prefWidth="210.0" text="Vorname" />
                             <RadioButton fx:id="rbtNachname" mnemonicParsing="false" prefHeight="18.0" prefWidth="226.0" text="Name" />
-                            <RadioButton fx:id="rbtEmailId" mnemonicParsing="false" prefHeight="18.0" prefWidth="136.0" text="email" />
+                            <RadioButton fx:id="rbtEmail" mnemonicParsing="false" prefHeight="18.0" prefWidth="136.0" text="email" />
                         </children>
                     </HBox>
                   <VBox prefHeight="483.0" prefWidth="344.0" spacing="10.0" GridPane.rowIndex="3">

@@ -4,12 +4,6 @@
     -fx-text-fill: black;
 }
 
-/*Raised button example */
-.jfx-button {
-    -jfx-button-type: RAISED;
-    -fx-background-color: green;
-    -fx-text-fill: white;
-}
 .button-raised{
     -fx-padding: 0.7em 0.57em;
     -fx-font-size: 12px;
@@ -24,4 +18,16 @@
     -fx-:1px;
     -fx-pref-width: 200;
     -fx-text-fill: WHITE;
+}
+.button
+{
+    -fx-background-color : #05071F;
+    -fx-text-fill : #e7e5e5;
+}
+.button:hover{
+    -fx-background-color : #10165F;
+}
+.button:pressed
+{
+    -fx-background-color : #1620A1;
 }

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="881.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.educom.restclient.ui.controller.DashboardController">
+   <children>
+      <BorderPane prefHeight="616.0" prefWidth="881.0">
+         <left>
+            <VBox alignment="TOP_CENTER" focusTraversable="true" minHeight="600.0" minWidth="133.0" prefHeight="600.0" prefWidth="160.0" spacing="20.0" style="-fx-background-color: #3F2B63;" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="imvprofilphoto" cache="true" fitHeight="117.0" fitWidth="126.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/jimmy-fallon.png" />
+                     </image>
+                  </ImageView>
+                  <TilePane accessibleText="Educom" prefHeight="38.0" prefWidth="164.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="61.0" prefWidth="164.0" text="Educom" textAlignment="CENTER" textFill="#eeebeb">
+                           <font>
+                              <Font name="FreeMono Bold Oblique" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </TilePane>
+                  <Button fx:id="btnSchuler" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#loadSchuler" prefHeight="43.0" prefWidth="158.0" text="Schuler" textFill="#c99f9f">
+                     <font>
+                        <Font name="LKLUG" size="13.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets left="50.0" />
+                     </opaqueInsets>
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" styleClass="button">
+                           <image>
+                              <Image url="@icons/icons8_Person_32px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnLehrer" alignment="BASELINE_RIGHT" graphicTextGap="22.0" minWidth="0.0" mnemonicParsing="false" onAction="#loadLehre" prefHeight="30.0" prefWidth="135.0" text="Lehrer">
+                     <opaqueInsets>
+                        <Insets left="50.0" />
+                     </opaqueInsets></Button>
+                  <Button fx:id="btnVertrag" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="19.0" layoutY="417.0" mnemonicParsing="false" onAction="#loadVertrag" prefHeight="43.0" prefWidth="158.0" text="Vertrag" textFill="#b99595">
+                     <font>
+                        <Font name="LKLUG" size="13.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets left="50.0" />
+                     </opaqueInsets>
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" styleClass="button">
+                           <image>
+                              <Image url="@icons/icons8_Person_32px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnKurs" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="19.0" layoutY="354.0" mnemonicParsing="false" onAction="#loadKurs" prefHeight="43.0" prefWidth="158.0" text="Kurs" textFill="#9e6262">
+                     <font>
+                        <Font name="LKLUG" size="13.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets left="50.0" />
+                     </opaqueInsets>
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" styleClass="button">
+                           <image>
+                              <Image url="@icons/icons8_Person_32px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnSignOut" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="19.0" layoutY="354.0" mnemonicParsing="false" onAction="#singoutHandle" prefHeight="43.0" prefWidth="158.0" text="Sign out" textFill="#a18787">
+                     <font>
+                        <Font name="LKLUG" size="13.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets left="50.0" />
+                     </opaqueInsets>
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" styleClass="button">
+                           <image>
+                              <Image url="@icons/icons8_Person_32px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <AnchorPane fx:id="rootPane" prefHeight="600.0" prefWidth="12.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

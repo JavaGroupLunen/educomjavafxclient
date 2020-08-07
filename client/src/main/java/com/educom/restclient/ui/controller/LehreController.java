@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -37,7 +36,7 @@ public class LehreController implements Initializable {
     @FXML
     private TableColumn<Lehre, String> clmVorname, clmName, clmEmail;
     @FXML
-    private TextField tfFirstName, tfLastName, tfEmail, tfage, tfSearch;
+    private TextField tfFirstName, tfLastName, tfEmail, tfSearch;
     @FXML
     private TableColumn clmDelete, clmUpdate;
     @FXML
@@ -45,7 +44,7 @@ public class LehreController implements Initializable {
     private final WebClient webClient = WebClient.builder().build();
     private List<Lehre> list = null;
     @FXML
-    private RadioButton rbtVorname, rbtNachname, rbtEmailId;
+    private RadioButton rbtVorname, rbtNachname, rbtEmail;
     @FXML
     private Button btnAdd, btnUpdate, btnDelete, btnSave;
     private Long updatedLehreId;
@@ -67,7 +66,7 @@ public class LehreController implements Initializable {
         Lehre updatedLehre=new Lehre();
         updatedLehre.setLastName(tfLastName.getText());
         updatedLehre.setFirstName(tfFirstName.getText());
-        updatedLehre.setEmailId(tfEmail.getText());
+        updatedLehre.setEmail(tfEmail.getText());
         RestTemplateClient restClientTemplate = new RestTemplateClient(restTemplate);
         restClientTemplate.updateLehre(getUpdatedLehreId(),updatedLehre);
         getAllLehre();
@@ -82,7 +81,7 @@ public class LehreController implements Initializable {
     }
 
     private void fillTableview() {
-        if(tfSearch.getText().strip().isEmpty()){
+        if (tfSearch.getText().trim().isEmpty()) {
             getAllLehre();
         }
 
@@ -105,7 +104,7 @@ public class LehreController implements Initializable {
         } else if (rbtNachname.isSelected()) {
             list = restClientTemplate.findByLastName(param);
 
-        } else if (rbtEmailId.isSelected()) {
+        } else if (rbtEmail.isSelected()) {
             list = restClientTemplate.findByEmailId(param);
         }
     }
@@ -113,13 +112,13 @@ public class LehreController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        btnAdd.getStyleClass().add("button-raised");
-        btnSave.getStyleClass().add("button-raised");
+//        btnAdd.getStyleClass().add("button-raised");
+//        btnSave.getStyleClass().add("button-raised");
         tableView.setEditable(true);
         tableView.getSelectionModel().setCellSelectionEnabled(true);
         clmVorname.setCellValueFactory(new PropertyValueFactory("firstName"));
         clmName.setCellValueFactory(new PropertyValueFactory("lastName"));
-        clmEmail.setCellValueFactory(new PropertyValueFactory("emailId"));
+        clmEmail.setCellValueFactory(new PropertyValueFactory("email"));
         //  clmAge.setCellValueFactory(new PropertyValueFactory<Lehre,Integer>("age"));
 
         clmDelete.setCellFactory(ActionButtonTableCell.<Lehre>forTableColumn("Delete", (Lehre p) -> {
@@ -142,7 +141,7 @@ public class LehreController implements Initializable {
                                 String oldValue, String newValue) {
 
                 System.out.println(" Text Changed to  " + newValue + "\n");
-                if (!newValue.strip().isEmpty()) {
+                if (!newValue.trim().isEmpty()) {
                     findBy(newValue);
 
                 }
@@ -152,7 +151,7 @@ public class LehreController implements Initializable {
         });
 
         ToggleGroup searchGroup = new ToggleGroup();
-        rbtEmailId.setToggleGroup(searchGroup);
+        rbtEmail.setToggleGroup(searchGroup);
         rbtVorname.setToggleGroup(searchGroup);
         rbtNachname.setToggleGroup(searchGroup);
 
@@ -163,17 +162,17 @@ public class LehreController implements Initializable {
         tfLastName.setText("");
         tfEmail.setText("");
     }
-private void setUpdatedLehreId(Long id){
-        this.updatedLehreId=id;
-}
-private Long getUpdatedLehreId(){
-        return updatedLehreId;
-}
-    private void fillFieldForUpdate(Lehre p){
-        tfFirstName.setText(p.getFirstName());
-        tfLastName.setText(p.getLastName());
-        tfEmail.setText(p.getEmailId());
+    private void setUpdatedLehreId(Long id){
+            this.updatedLehreId=id;
     }
+    private Long getUpdatedLehreId(){
+            return updatedLehreId;
+    }
+    private void fillFieldForUpdate(Lehre p){
+            tfFirstName.setText(p.getFirstName());
+            tfLastName.setText(p.getLastName());
+            tfEmail.setText(p.getEmail());
+        }
 
 
 

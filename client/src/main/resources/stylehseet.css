@@ -1,84 +1,29 @@
-.sidebar{
-    -fx-background-color: rgb(58,69,88);
-}
-.sidebar-user-btn{
-    -fx-background-color: transparent;
-    -fx-background-radius: 0px;
-    -fx-text-fill: #b8b1b1;
+.scroll-pane {
+    -fx-background-color: #02030A;
 }
 
-.sidebar-btn{
-    -fx-background-color: transparent;
-    -fx-background-radius: 0px;
-    -fx-text-fill: #b8b1b1;
-}
-.sidebar-btn:hover{
-    -fx-background-color: transparent;
-    -fx-background-radius: 0px;
-    -fx-text-fill: #b8b1b1;
-    -fx-border-color: rgb(22,169,250);
-    -fx-border-width: 0px 0px 0px 3px;
-}
-.label{
-    -fx-text-fill: #b8b1b1;
-}
-.sidebar-btn:pressed .label{
-    -fx-background-color: transparent;
-    -fx-background-radius: 0px;
-    -fx-text-fill: #0099ff;
-}
-.sidebar-btn:pressed .sidebar-btn-icon{
-    -fx-fill: #0099ff;
-}
-.sidebar-btn-icon{
-    -fx-fill: #b8b1b1;
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
 }
 
-.menu-bar-btns{
-    -fx-background-color: #fff;
-    -fx-border-color: #cccccc;
-    -fx-border-width: 0px 0px 0px 1px;
-}
-.menu-bar-btns:hover{
-    -fx-background-color: #0099ff;
-}
-.menu-bar-btns-icon{
-    -fx-fill: #999;
-}
-.menu-bar-btns:hover .menu-bar-btns-icon{
-    -fx-fill: #fff;
-}
-.menu-bar-search-field{
-    -fx-prompt-text-fill: #b8b1b1;
-    -fx-text-fill: #000;
-}
-.menu-bar-search-field-box{
-    -fx-prompt-text-fill: #b8b1b1;
-    -fx-text-fill: #000;
-    -fx-border-color: #cccccc;
-    -fx-border-width: 0px 0px 0px 1px;
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
 }
 
-.content-area-circle-btns{
-    -fx-background-color: #fff;
-    -fx-background-radius: 100px;
-    -fx-border-color: #cccccc;
-    -fx-border-radius: 100%;
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
 }
-.content-area-circle-btns:hover{
-    -fx-background-color: #0099ff;
-    -fx-background-radius: 100px;
-    -fx-text-fill: #fff;
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #10165F;
+    -fx-background-radius: 5em;
 }
-.content-area-circle-btns-icon{
-    -fx-fill: #b8b1b1;
-}
-.content-area-circle-btns:hover .content-area-circle-btns-icon{
-    -fx-fill: #fff;
-}
-.lbl2{
-    -fx-text-fill: #757373;
-}
-.lbl3{
-    -fx-text-fill: #00a1ff;
+
+.scroll-pane > .corner {
+    -fx-background-color: black;
 }
