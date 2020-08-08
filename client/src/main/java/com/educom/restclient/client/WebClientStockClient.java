@@ -1,5 +1,6 @@
 package com.educom.restclient.client;
 
+import com.educom.restclient.model.Kurs;
 import com.educom.restclient.model.Lehre;
 import com.educom.restclient.model.Schuler;
 import lombok.extern.log4j.Log4j2;
@@ -7,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -57,6 +59,16 @@ public class WebClientStockClient implements StockClient {
                         e -> log.info(() -> "Closing stream for " + ". Received " + e.getMessage()));
     }
 
+    public Flux<Kurs> getKursList() {
+        log.info("WebClientStockClient");
+        return webClient.get()
+                .uri("localhost:8082/api/kurs/kurslist")
+                .retrieve()
+                .bodyToFlux(Kurs.class)
+                .retryBackoff(5, Duration.ofSeconds(1), Duration.ofSeconds(5))
+                .doOnError(IOException.class,
+                        e -> log.info(() -> "Closing stream for " + ". Received " + e.getMessage()));
+    }
 
     @Override
     public Flux<Lehre>  delete(Lehre lehre) {

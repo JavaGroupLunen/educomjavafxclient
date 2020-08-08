@@ -77,8 +77,20 @@ public class SchulerClient implements HttpService<Schuler> {
 
     }
 
-    @Override
+
     public String updateschuler(Long id, Schuler schuler) {
+        final String uri = URL_UPDATE_schuler;
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("id", String.valueOf(id));
+
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.put(uri, schuler, params);
+        return "updated";
+
+    }
+
+    @Override
+    public String update(Long id, Schuler schuler) {
         final String uri = URL_UPDATE_schuler;
         Map<String, String> params = new HashMap<String, String>();
         params.put("id", String.valueOf(id));
