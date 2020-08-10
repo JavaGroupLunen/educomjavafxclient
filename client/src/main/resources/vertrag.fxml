@@ -1,9 +1,339 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.CardPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.educom.restclient.ui.controller.VertragContoller">
-
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.educom.restclient.ui.controller.VertragContoller">
+   <children>
+      <SplitPane dividerPositions="0.5292368681863231" prefHeight="592.0" prefWidth="1011.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Accordion prefHeight="585.0" prefWidth="530.0">
+                    <panes>
+                      <TitledPane animated="false" text="Schulerinformationen">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <GridPane alignment="BASELINE_RIGHT" prefHeight="497.0" prefWidth="530.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="94.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="229.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="296.0" minHeight="7.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="270.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="239.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="239.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="276.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="276.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="284.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="287.0" minHeight="0.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="287.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="287.0" minHeight="10.0" prefHeight="122.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label text="Label" />
+                                          <Label text="Label" GridPane.columnIndex="1" />
+                                          <Label text="Vorname" GridPane.rowIndex="1" />
+                                          <Label text="Nachname" GridPane.rowIndex="2" />
+                                          <Label prefHeight="16.0" prefWidth="125.0" text="Geburstdatum" GridPane.rowIndex="3" />
+                                          <Label text="Geschlecht" GridPane.rowIndex="4" />
+                                          <Label fx:id="tfadres" text="Adresse" GridPane.rowIndex="5" />
+                                          <TextField fx:id="tfVorname" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <Label text="PLZ" GridPane.rowIndex="6" />
+                                          <TextField fx:id="tfName" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label prefHeight="16.0" prefWidth="44.0" text="Stadt" GridPane.rowIndex="7" />
+                                          <TextField fx:id="tfGeburstdatum" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <Label prefHeight="16.0" prefWidth="237.0" text="Tel" GridPane.rowIndex="8" />
+                                          <TextField fx:id="tfAdresse" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                          <ComboBox fx:id="cbxGeschlecht" prefHeight="26.0" prefWidth="249.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                          <TextField fx:id="tfPlz" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                          <TextField fx:id="tfStadt" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                          <TextField fx:id="tfTel" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                          <TextField fx:id="tfSchule" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                          <Label prefHeight="16.0" prefWidth="116.0" text="Schule" GridPane.rowIndex="9" />
+                                          <Label prefHeight="16.0" prefWidth="116.0" text="Klasse" GridPane.rowIndex="10" />
+                                          <TextField fx:id="tfKlasse" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                      </TitledPane>
+                      <TitledPane animated="false" prefHeight="394.0" prefWidth="609.0" text="Kursinformationen">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox prefHeight="502.0" prefWidth="530.0">
+                                       <children>
+                                          <GridPane prefHeight="433.0" prefWidth="530.0">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="259.0" minWidth="10.0" prefWidth="190.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="308.0" minWidth="10.0" prefWidth="308.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints maxHeight="94.0" minHeight="10.0" prefHeight="12.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="229.0" minHeight="0.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="296.0" minHeight="2.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="270.0" minHeight="6.0" prefHeight="27.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="239.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="239.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="239.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="239.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="239.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="239.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label />
+                                                <Label text="Kursname" GridPane.rowIndex="1">
+                                                   <opaqueInsets>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </opaqueInsets>
+                                                </Label>
+                                                <Label fx:id="tfRaum" text="Raum" GridPane.rowIndex="2">
+                                                   <opaqueInsets>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </opaqueInsets>
+                                                </Label>
+                                                <Label fx:id="tfLehre" text="Lehre" GridPane.rowIndex="3">
+                                                   <opaqueInsets>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </opaqueInsets>
+                                                </Label>
+                                                <TextField fx:id="tfKursName" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                   <opaqueInsets>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </opaqueInsets>
+                                                </TextField>
+                                                <TextField fx:id="tfRaum" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <opaqueInsets>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </opaqueInsets>
+                                                </TextField>
+                                                <TextField fx:id="tfLehre" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                   <opaqueInsets>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </opaqueInsets>
+                                                </TextField>
+                                                <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#addAction" prefHeight="49.0" prefWidth="125.0" text="Add" GridPane.rowIndex="9" />
+                                                <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveAction" prefHeight="50.0" prefWidth="132.0" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                                                   <opaqueInsets>
+                                                      <Insets right="20.0" />
+                                                   </opaqueInsets>
+                                                </Button>
+                                                <Label fx:id="tfLehre1" prefHeight="16.0" prefWidth="53.0" text="Dauer" GridPane.rowIndex="4">
+                                                   <opaqueInsets>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </opaqueInsets>
+                                                </Label>
+                                                <Label fx:id="tfLehre2" text="Kurslang" GridPane.rowIndex="5">
+                                                   <opaqueInsets>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </opaqueInsets>
+                                                </Label>
+                                                <Label fx:id="tfLehre21" text="Anfangen ab" GridPane.rowIndex="6">
+                                                   <opaqueInsets>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </opaqueInsets>
+                                                </Label>
+                                                <Label fx:id="tfLehre211" text="Ende bis" GridPane.rowIndex="7">
+                                                   <opaqueInsets>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </opaqueInsets>
+                                                </Label>
+                                                <Label fx:id="tfLehre213" text="Price" GridPane.rowIndex="8">
+                                                   <opaqueInsets>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </opaqueInsets>
+                                                </Label>
+                                                <TextField fx:id="tfDauer" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                                   <opaqueInsets>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </opaqueInsets>
+                                                </TextField>
+                                                <TextField fx:id="tfKurslang" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                                   <opaqueInsets>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </opaqueInsets>
+                                                </TextField>
+                                                <TextField fx:id="tfAnfangenAb" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                                   <opaqueInsets>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </opaqueInsets>
+                                                </TextField>
+                                                <TextField fx:id="tfEndeBis" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                                   <opaqueInsets>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </opaqueInsets>
+                                                </TextField>
+                                                <TextField fx:id="tfPrice" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                                   <opaqueInsets>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </opaqueInsets>
+                                                </TextField>
+                                             </children>
+                                             <opaqueInsets>
+                                                <Insets left="5.0" right="5.0" />
+                                             </opaqueInsets>
+                                          </GridPane>
+                                          <TableView fx:id="tbwKurs1" layoutX="10.0" layoutY="172.0" prefHeight="333.0" prefWidth="530.0">
+                                             <columns>
+                                                <TableColumn fx:id="clmKursName1" prefWidth="150.0" text="Kursname" />
+                                                <TableColumn fx:id="clmRaum1" minWidth="0.0" prefWidth="142.0" text="Raum" />
+                                                <TableColumn fx:id="clmLehre1" prefWidth="153.0" text="Lehre" />
+                                             </columns>
+                                          </TableView>
+                                          <TextField fx:id="tfDauer211">
+                                             <opaqueInsets>
+                                                <Insets left="5.0" right="5.0" />
+                                             </opaqueInsets>
+                                          </TextField>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                      </TitledPane>
+                      <TitledPane animated="false" text="vertraginformationen">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <GridPane prefHeight="497.0" prefWidth="530.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="94.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="229.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="296.0" minHeight="7.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="270.0" minHeight="9.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="239.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="239.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="284.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="402.0" minHeight="10.0" prefHeight="253.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label text="Vertrag No" />
+                                          <Label fx:id="lblvertragNo" text="Label" GridPane.columnIndex="1" />
+                                          <Label text="Anfangsatum" GridPane.rowIndex="1" />
+                                          <TextField fx:id="tfAnfangsdatum" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <Label text="Endedatum" GridPane.rowIndex="2" />
+                                          <TextField fx:id="tfEndeDatum" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label text="Zahlungstype" GridPane.rowIndex="3" />
+                                          <ChoiceBox fx:id="cbxZahlungsType" prefHeight="26.0" prefWidth="251.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <Label text="Monatlische Price" GridPane.rowIndex="4" />
+                                          <TextField fx:id="tfMonatlichPrice" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                          <Label text="Einmalige Price" GridPane.rowIndex="5" />
+                                          <TextField fx:id="tfEinmaligePrice" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                          <Label text="Anmeldegebühre" GridPane.rowIndex="6" />
+                                          <TextField fx:id="tfAnmeldegebuhr" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </TitledPane>
+                        <TitledPane animated="false" text="Elterninformationen">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <GridPane alignment="BASELINE_RIGHT" prefHeight="497.0" prefWidth="530.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="94.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="229.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="296.0" minHeight="7.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="239.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="239.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="276.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="276.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="284.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="287.0" minHeight="10.0" prefHeight="122.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label text="Label" />
+                                          <Label text="Label" GridPane.columnIndex="1" />
+                                          <Label text="Vatername" GridPane.rowIndex="1" />
+                                          <Label text="Mutername" GridPane.rowIndex="2" />
+                                          <Label text="Adresse" GridPane.rowIndex="4" />
+                                          <TextField fx:id="tfVatername" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <Label text="PLZ" GridPane.rowIndex="5" />
+                                          <TextField fx:id="tfMuttername" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label prefHeight="16.0" prefWidth="44.0" text="Stadt" GridPane.rowIndex="6" />
+                                          <Label prefHeight="16.0" prefWidth="237.0" text="Tel" GridPane.rowIndex="7" />
+                                          <TextField fx:id="tfElternAdres" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                          <TextField fx:id="tfElternPlz" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                          <TextField fx:id="tfElternStadt" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                          <TextField fx:id="tfElternTel" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </TitledPane>
+                    </panes>
+                  </Accordion>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="399.0">
+               <children>
+                  <VBox layoutX="8.0" prefHeight="559.0" prefWidth="457.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="472.0" text="Search">
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox alignment="TOP_CENTER" opacity="0.74">
+                           <children>
+                              <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="154.0" text="vertragnum">
+                                 <opaqueInsets>
+                                    <Insets left="5.0" right="5.0" />
+                                 </opaqueInsets>
+                              </RadioButton>
+                              <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="111.0" text="schuler" />
+                              <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="113.0" text="eltern" />
+                              <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="79.0" text="status" />
+                           </children>
+                           <opaqueInsets>
+                              <Insets bottom="20.0" top="5.0" />
+                           </opaqueInsets>
+                        </HBox>
+                        <TextField fx:id="tfSearch" prefHeight="26.0" prefWidth="471.0" />
+                        <TableView prefHeight="479.0" prefWidth="459.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
 </AnchorPane>

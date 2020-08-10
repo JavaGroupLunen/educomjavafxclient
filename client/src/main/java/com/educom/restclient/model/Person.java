@@ -23,6 +23,25 @@ public abstract class Person {
         this.email = email;
     }
 
+    public Person(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+    public Person(String firstName, String lastName, String email, String phoneNumber, Gender gender, Date geburstDatum, String adres, String stadt, String land, String plz) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+        this.geburstDatum = geburstDatum;
+        this.adres = adres;
+        this.stadt = stadt;
+        this.land = land;
+        this.plz = plz;
+    }
+
     public Person() {
     }
 

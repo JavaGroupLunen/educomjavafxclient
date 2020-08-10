@@ -73,7 +73,6 @@ public class KursController implements Initializable {
     @FXML
     private RadioButton rbtSchulerEmail;
     @FXML
-
     private TextField tfSchulerSearch;
     private ObservableList<Kurs> kurssData = observableArrayList();
     private List<Kurs> list = null;
@@ -81,10 +80,12 @@ public class KursController implements Initializable {
     private KursClient kursClient;
     private ApplicationContext applicationContext;
 
+
     @FXML
     void addAction(ActionEvent event) {
         Kurs kurs = new Kurs(tfKursName.getText());
         kurs.setRaum(cbxRaum.getValue());
+        kurs.setLehre(cbxLehre.getValue());
         kursClient = new KursClient(restTemplate);
         System.out.println(kurs);
         kursClient.add(kurs);
@@ -93,8 +94,15 @@ public class KursController implements Initializable {
         clearField();
     }
 void fillLehreComboBox(){
+        ObservableList<Lehre> lehreObservableList =FXCollections.observableList(getAllLehre());
+        cbxLehre.setItems(lehreObservableList);
 
 }
+
+    private   List<Lehre>  getAllLehre() {
+     return new WebClientStockClient(webClient).getLehreList().collectList().block();
+
+    }
 void fillRaumComboBox(){
     ObservableList<String> raumlist =FXCollections.observableList(List.of("Raum 1","Raum 2")).sorted();
         cbxRaum.setItems(raumlist);

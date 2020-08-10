@@ -2,7 +2,7 @@ package com.educom.restclient.client;
 
 import com.educom.restclient.model.Lehre;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;

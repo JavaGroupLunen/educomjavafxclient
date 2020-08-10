@@ -1,37 +1,47 @@
 package com.educom.restclient.model;
 
-import java.util.List;
-
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Kurs {
 
     private long id;
-
     private String name;
-
     private String raum;
-
+    private Double price;
+    private int dauer;
+    private int kurslang;
+    private Date anfangenAb;
+    private Date endeBis;
+    private KursType kurstype;
     private Lehre lehre;
 
-    private List<Schuler> schulerList;
-
-    public Kurs() {
-    }
-
-    public Kurs(String name, String raum) {
-        this.name = name;
-        this.raum = raum;
-    }
+    private Set<Schuler> schulerSet = new HashSet<>();
 
     public Kurs(String name) {
         this.name = name;
     }
 
-    public Kurs(String name, String raum, Lehre lehre, List<Schuler> schulerList) {
+    public Kurs(String name, String raum, Lehre lehre) {
         this.name = name;
         this.raum = raum;
         this.lehre = lehre;
-        this.schulerList = schulerList;
+       
+    }
+
+    public Kurs() {
+    }
+
+    public Kurs(String name, String raum) {
+    }
+
+    public Lehre getLehre() {
+        return lehre;
+    }
+
+    public void setLehre(Lehre lehre) {
+        this.lehre = lehre;
     }
 
     public long getId() {
@@ -58,30 +68,13 @@ public class Kurs {
         this.raum = raum;
     }
 
-    public Lehre getLehre() {
-        return lehre;
+
+
+    public Set<Schuler> getSchulerSet() {
+        return schulerSet;
     }
 
-    public void setLehre(Lehre lehre) {
-        this.lehre = lehre;
-    }
-
-    public List<Schuler> getSchulerList() {
-        return schulerList;
-    }
-
-    public void setSchulerList(List<Schuler> schulerList) {
-        this.schulerList = schulerList;
-    }
-
-    @Override
-    public String toString() {
-        return "Kurs{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", raum='" + raum + '\'' +
-                ", lehre=" + lehre +
-                ", schulerList=" + schulerList +
-                '}';
+    public void setSchulerSet(Set<Schuler> schulerSet) {
+        this.schulerSet = schulerSet;
     }
 }

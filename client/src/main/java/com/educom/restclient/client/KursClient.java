@@ -107,7 +107,13 @@ public class KursClient implements HttpService<Kurs> {
                 urlParameters);
         return entity.getBody() != null ? Arrays.asList(entity.getBody()) : Collections.emptyList();
     }
-
+    public List<Kurs> getAllKurs() {
+        final String uri = URL_KursLIST;
+        ResponseEntity<List<Kurs>> kurslist = restTemplate.getForObject(uri,
+                ResponseEntity.class
+                );
+        return  kurslist.getBody();
+    }
     public List<Kurs> findByRaum(String raum) {
         final String uri = URL_FINDBYLASTNAME;
         Map<String, String> urlParameters = new HashMap<>();
