@@ -83,7 +83,7 @@ public class KursController implements Initializable {
 
     @FXML
     void addAction(ActionEvent event) {
-        Kurs kurs = new Kurs(tfKursName.getText());
+        Kurs kurs = new Kurs(tfKursName.getText(), null, null);
         kurs.setRaum(cbxRaum.getValue());
         kurs.setLehre(cbxLehre.getValue());
         kursClient = new KursClient(restTemplate);
@@ -93,7 +93,7 @@ public class KursController implements Initializable {
         fillTableview();
         clearField();
     }
-void fillLehreComboBox(){
+    void fillLehreComboBox(){
         ObservableList<Lehre> lehreObservableList =FXCollections.observableList(getAllLehre());
         cbxLehre.setItems(lehreObservableList);
 
@@ -103,7 +103,7 @@ void fillLehreComboBox(){
      return new WebClientStockClient(webClient).getLehreList().collectList().block();
 
     }
-void fillRaumComboBox(){
+    void fillRaumComboBox(){
     ObservableList<String> raumlist =FXCollections.observableList(List.of("Raum 1","Raum 2")).sorted();
         cbxRaum.setItems(raumlist);
 }
@@ -156,14 +156,19 @@ void fillRaumComboBox(){
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fillRaumComboBox();
         fillLehreComboBox();
-        btnAdd.getStyleClass().add("button-raised");
-        btnSave.getStyleClass().add("button-raised");
         tbwKurs.setEditable(true);
         tbwKurs.getSelectionModel().setCellSelectionEnabled(true);
-
         clmKursName.setCellValueFactory(new PropertyValueFactory("name"));
         clmRaum.setCellValueFactory(new PropertyValueFactory("raum"));
         clmLehre.setCellValueFactory(new PropertyValueFactory("lehre"));
+        TableColumn<Schuler, Integer> clmLange=new TableColumn<>("kurslange");
+        clmLange.setCellValueFactory(new PropertyValueFactory("kurslang"));
+        TableColumn<Schuler, Integer> clmDauern=new TableColumn<>("kursdauern");
+        clmDauern.setCellValueFactory(new PropertyValueFactory("dauer"));
+        TableColumn<Schuler, Date> clmBeginAb=new TableColumn<>("kursbegin ab");
+        clmBeginAb.setCellValueFactory(new PropertyValueFactory("anfangAb)"));
+        TableColumn<Schuler, Date> clmEndeBis=new TableColumn<>("kursende");
+        clmEndeBis.setCellValueFactory(new PropertyValueFactory("endeBis)"));
 
         clmDelete.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", (Kurs p) -> {
             deleteClient(p.getId());

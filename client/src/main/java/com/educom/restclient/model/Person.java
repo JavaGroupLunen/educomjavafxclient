@@ -3,51 +3,22 @@ package com.educom.restclient.model;
 
 import java.util.Date;
 
+
+
 public abstract class Person {
-    protected long id;
-    protected String firstName;
-    protected String lastName;
-    protected String email;
+
+   protected long id;
+    protected  String firstName;
+    protected  String lastName ;
+    protected  String email;
     protected String phoneNumber;
     protected Gender gender;
     protected Date geburstDatum;
-    protected String adres;
+    protected String adresse;
     protected String stadt;
     protected String land;
     protected String plz;
 
-    public Person(long id, String firstName, String lastName, String email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
-
-    public Person(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
-
-    public Person(String firstName, String lastName, String email, String phoneNumber, Gender gender, Date geburstDatum, String adres, String stadt, String land, String plz) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.gender = gender;
-        this.geburstDatum = geburstDatum;
-        this.adres = adres;
-        this.stadt = stadt;
-        this.land = land;
-        this.plz = plz;
-    }
-
-    public Person() {
-    }
-
-    public long getId() {
-        return id;
-    }
 
     public void setId(long id) {
         this.id = id;
@@ -77,6 +48,10 @@ public abstract class Person {
         this.email = email;
     }
 
+    public long getId() {
+        return id;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -98,15 +73,15 @@ public abstract class Person {
     }
 
     public void setGeburstDatum(Date geburstDatum) {
-        this.geburstDatum = (geburstDatum);
+        this.geburstDatum = geburstDatum;
     }
 
-    public String getAdres() {
-        return adres;
+    public String getAdresse() {
+        return adresse;
     }
 
-    public void setAdres(String adres) {
-        this.adres = adres;
+    public void setAdresse(String adres) {
+        this.adresse = adres;
     }
 
     public String getStadt() {
@@ -133,20 +108,4 @@ public abstract class Person {
         this.plz = plz;
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", gender=" + gender +
-                ", geburstDatum=" + geburstDatum +
-                ", adres='" + adres + '\'' +
-                ", stadt='" + stadt + '\'' +
-                ", land='" + land + '\'' +
-                ", plz='" + plz + '\'' +
-                '}';
-    }
 }

@@ -1,6 +1,7 @@
 package com.educom.restclient.model;
 
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,6 +11,7 @@ public class Schuler extends Person{
     private String vater;
     private String mutter;
     private Schule schule;
+    private String klasse;
     private Set<Kurs> kurses = new HashSet<>();
 
     public Schuler(String vater, String mutter, Schule schule, Set<Kurs> kurses) {
@@ -66,8 +68,116 @@ public class Schuler extends Person{
         return kurses;
     }
 
+    public String getKlasse() {
+        return klasse;
+    }
+
+    public void setKlasse(String klasse) {
+        this.klasse = klasse;
+    }
+
     public void setKurses(Set<Kurs> kurses) {
         this.kurses = kurses;
+    }
+
+    @Override
+    public String getFirstName() {
+        return super.getFirstName();
+    }
+
+    @Override
+    public void setFirstName(String firstName) {
+        super.setFirstName(firstName);
+    }
+
+    @Override
+    public String getLastName() {
+        return super.getLastName();
+    }
+
+    @Override
+    public void setLastName(String lastName) {
+        super.setLastName(lastName);
+    }
+
+    @Override
+    public String getEmail() {
+        return super.getEmail();
+    }
+
+    @Override
+    public void setEmail(String email) {
+        super.setEmail(email);
+    }
+
+    @Override
+    public String getPhoneNumber() {
+        return super.getPhoneNumber();
+    }
+
+    @Override
+    public void setPhoneNumber(String phoneNumber) {
+        super.setPhoneNumber(phoneNumber);
+    }
+
+    @Override
+    public Gender getGender() {
+        return super.getGender();
+    }
+
+    @Override
+    public void setGender(Gender gender) {
+        super.setGender(gender);
+    }
+
+    @Override
+    public Date getGeburstDatum() {
+        return super.getGeburstDatum();
+    }
+
+    @Override
+    public void setGeburstDatum(Date geburstDatum) {
+        super.setGeburstDatum(geburstDatum);
+    }
+
+    @Override
+    public String getAdresse() {
+        return super.getAdresse();
+    }
+
+    @Override
+    public void setAdresse(String adres) {
+        super.setAdresse(adres);
+    }
+
+    @Override
+    public String getStadt() {
+        return super.getStadt();
+    }
+
+    @Override
+    public void setStadt(String stadt) {
+        super.setStadt(stadt);
+    }
+
+    @Override
+    public String getLand() {
+        return super.getLand();
+    }
+
+    @Override
+    public void setLand(String land) {
+        super.setLand(land);
+    }
+
+    @Override
+    public String getPlz() {
+        return super.getPlz();
+    }
+
+    @Override
+    public void setPlz(String plz) {
+        super.setPlz(plz);
     }
 
     @Override
@@ -80,7 +190,7 @@ public class Schuler extends Person{
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", gender=" + gender +
                 ", geburstDatum=" + geburstDatum +
-                ", adres='" + adres + '\'' +
+                ", adres='" + adresse + '\'' +
                 ", stadt='" + stadt + '\'' +
                 ", land='" + land + '\'' +
                 ", plz='" + plz + '\'' +

@@ -49,6 +49,7 @@ public class DashboardController implements Initializable {
     @FXML
     private void loadVertrag(ActionEvent event2) {
         loadStage("/vertrag.fxml");
+
     }
 
     @Override

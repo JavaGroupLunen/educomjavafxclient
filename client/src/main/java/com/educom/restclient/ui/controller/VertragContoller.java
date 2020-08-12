@@ -1,195 +1,322 @@
 package com.educom.restclient.ui.controller;
 
+import com.educom.restclient.client.KursClient;
+import com.educom.restclient.client.VertragClient;
+import com.educom.restclient.client.WebClientStockClient;
+import com.educom.restclient.model.*;
+import com.educom.restclient.util.ActionButtonTableCell;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static javafx.collections.FXCollections.observableArrayList;
 
 public class VertragContoller implements Initializable {
+    private static Stage vertragWindows;
+    private final WebClient webClient = WebClient.builder().build();
+    private final RestTemplate restTemplate = new RestTemplate();
+    @FXML
+    private  Accordion accordion;
     @FXML
     private AnchorPane rootPane;
     @FXML
     private Label tfadres;
-
     @FXML
     private TextField tfVorname;
-
     @FXML
     private TextField tfName;
-
     @FXML
     private TextField tfGeburstdatum;
-
     @FXML
     private TextField tfAdresse;
-
     @FXML
-    private ComboBox<?> cbxGeschlecht;
-
+    private ComboBox<Gender> cbxGeschlecht;
     @FXML
     private TextField tfPlz;
-
     @FXML
     private TextField tfStadt;
-
     @FXML
     private TextField tfTel;
-
     @FXML
     private TextField tfSchule;
-
     @FXML
     private TextField tfKlasse;
-
     @FXML
     private TextField tfRaum;
-
     @FXML
     private TextField tfLehre;
-
     @FXML
     private TextField tfKursName;
-
     @FXML
-    private Button btnAdd;
-
-    @FXML
-    private Button btnSave;
-
-    @FXML
-    private Label tfLehre1;
-
-    @FXML
-    private Label tfLehre2;
-
-    @FXML
-    private Label tfLehre21;
-
-    @FXML
-    private Label tfLehre211;
-
-    @FXML
-    private Label tfLehre213;
-
+    private Button btnAdd, btnKursFenster,btnSave;
     @FXML
     private TextField tfDauer;
-
     @FXML
     private TextField tfKurslang;
-
     @FXML
     private TextField tfAnfangenAb;
-
     @FXML
     private TextField tfEndeBis;
-
     @FXML
-    private TextField tfPrice;
-
+    private TextField tfKosten, tfEmail;
     @FXML
-    private TableView<?> tbwKurs1;
-
+    private TableView<Kurs> tbwKursAuswahl;
     @FXML
-    private TableColumn<?, ?> clmKursName1;
-
+    private TableColumn<Kurs, String> clmKursName;
     @FXML
-    private TableColumn<?, ?> clmRaum1;
-
+    private TableColumn<Kurs, String> clmRaum;
     @FXML
-    private TableColumn<?, ?> clmLehre1;
-
+    private TableColumn<Kurs, Lehre> clmLehre;
     @FXML
-    private TextField tfDauer211;
-
+    private TableColumn clmKursDelete;
     @FXML
     private Label lblvertragNo;
-
     @FXML
-    private TextField tfAnfangsdatum;
-
+    private TextField tfAnfangsdatum, tfInstitute, tfEndeDatum, tfMonatlichPrice;
     @FXML
-    private TextField tfEndeDatum;
-
+    private ChoiceBox<ZahlungsType> cbxZahlungsType;
     @FXML
-    private ChoiceBox<?> cbxZahlungsType;
-
+    private TextField tfEinmaligePrice, tfAnmeldegebuhr, tfMaterialprice, tfTotalprice, tfRabatprice;
     @FXML
-    private TextField tfMonatlichPrice;
-
+    private TextField tfVatername, tfRabatPercent, tfMuttername, tfElternAdres, tfElternPlz, tfIban, tfBic, tfElternTel, tfElternStadt, tfInhaber, tfVertragSearch;
     @FXML
-    private TextField tfEinmaligePrice;
-
+    private TableView<Vertrag> tbwVertrag;
     @FXML
-    private TextField tfAnmeldegebuhr;
-
+    private TableColumn<Vertrag, String> clmSchuler, clmZahlungstype;
     @FXML
-    private TextField tfMaterialprice;
-
+    private TableColumn<Vertrag, Date> clmVertragsdatum, clmVertragsbegin, clmVertragsende;
     @FXML
-    private TextField tfTotalprice;
-
+    private TableColumn<Vertrag, Double> clmEinmaligeKosten, clmAnmeldegebuhr, clmMaterialprice, clmSumme, clmMonatlischeRate, clmRestbetrag, clmRabat;
     @FXML
-    private TextField tfRabatprice;
-
+    private AnchorPane vertragRechtPanel;
     @FXML
-    private TextField tfRabatPercent;
-
+    private  TitledPane tpKursinformationen,tpSchulerinformationen,tpElterninformationen;
     @FXML
-    private TextField tfVatername;
+    private TableColumn<Vertrag, Integer> clmRabatPercent;
+    TableColumn<Kurs, Integer> clmLange = new TableColumn<>("kurslange");
 
-    @FXML
-    private TextField tfMuttername;
+    TableColumn<Kurs, Integer> clmDauern = new TableColumn<>("kursdauern");
 
-    @FXML
-    private TextField tfElternAdres;
+    TableColumn<Kurs, String> clmBeginAb = new TableColumn<>("kursbegin ab");
 
-    @FXML
-    private TextField tfElternPlz;
+    TableColumn<Kurs, String> clmEndeBis = new TableColumn<>("kursende");
 
-    @FXML
-    private TextField tfElternStadt;
+    private final ObservableList<Vertrag> vertragsDatei = observableArrayList();
+    private final List<Kurs> selectedKursList = new ArrayList<>();
 
-    @FXML
-    private TextField tfElternTel;
+    private ObservableList<Kurs> kurssAuswahlData =  observableArrayList();
+    private VertragClient vertragClient;
+    private ApplicationContext applicationContext;
+    private Kurs selectedKurse;
+    private KursClient kursClient;
 
-    @FXML
-    private TextField tfBic;
-
-    @FXML
-    private TextField tfIban;
-
-    @FXML
-    private TextField tfInstitute;
-
-    @FXML
-    private TextField tfInhaber;
-
-    @FXML
-    private TextField tfSearch;
 
     @FXML
     void addAction(ActionEvent event) {
+        Schuler schuler = new Schuler();
+        schuler.setFirstName(tfVorname.getText());
+        schuler.setLastName(tfName.getText());
+        schuler.setEmail(tfEmail.getText());
+        schuler.setAdresse(tfAdresse.getText());
+        if (tfGeburstdatum.getText() != null && !tfGeburstdatum.getText().trim().isEmpty()) {
+            Long gdatum = Long.valueOf(tfGeburstdatum.getText());
+            schuler.setGeburstDatum(new Date(gdatum));
+        } else {
+            schuler.setGeburstDatum(new Date());
+        }
+        schuler.setGender(cbxGeschlecht.getValue());
+        schuler.setStadt(tfStadt.getText());
+        schuler.setPlz(tfPlz.getText());
+        schuler.setPhoneNumber(tfTel.getText());
+        schuler.setVater(tfVatername.getText());
+        schuler.setMutter(tfMuttername.getText());
+        schuler.setKlasse(tfKlasse.getText());
 
+        Set<Kurs> list = new ArrayList<Kurs>().stream().collect(Collectors.toSet());
+        schuler.setKurses(list);
+        // schulerClient = new SchulerClient(restTemplate);
+        System.out.println(schuler);
+        // schulerClient.add(schuler);
+
+    }
+
+    private void clearField() {
+        tfVorname.setText("");
+        tfName.setText("");
+        tfEmail.setText("");
+        tfAdresse.setText("");
+        tfGeburstdatum.setText("");
+        tfTel.setText("");
+        tfPlz.setText("");
+        tfStadt.setText("");
+        tfVatername.setText("");
+        tfMuttername.setText("");
+    }
+
+    private void vertragTableFill() {
+        clmSchuler.setCellValueFactory(new PropertyValueFactory("schuler"));
+        clmVertragsdatum.setCellValueFactory(new PropertyValueFactory("vertragsdatum"));
+        clmVertragsbegin.setCellValueFactory(new PropertyValueFactory("vertragsbegin"));
+        clmVertragsende.setCellValueFactory(new PropertyValueFactory("vertragsende"));
+        clmZahlungstype.setCellValueFactory(new PropertyValueFactory("zahlungstype"));
+        clmEinmaligeKosten.setCellValueFactory(new PropertyValueFactory("einmaligeKosten"));
+        clmAnmeldegebuhr.setCellValueFactory(new PropertyValueFactory("anmeldegebuhr"));
+        clmMaterialprice.setCellValueFactory(new PropertyValueFactory("materialprice"));
+        clmMonatlischeRate.setCellValueFactory(new PropertyValueFactory("monatlischeRate"));
+        clmRabat.setCellValueFactory(new PropertyValueFactory("rabat"));
+        clmRabatPercent.setCellValueFactory(new PropertyValueFactory("rabatPercent"));
+        clmSumme.setCellValueFactory(new PropertyValueFactory("summe"));
+        tbwVertrag.getItems().setAll(vertragsDatei);
+        tbwVertrag.getColumns().setAll(clmSchuler, clmVertragsdatum, clmVertragsbegin, clmVertragsende, clmZahlungstype, clmEinmaligeKosten, clmAnmeldegebuhr, clmMaterialprice, clmMonatlischeRate, clmRabat, clmRabatPercent, clmSumme);
+        //table fill here
+        tfVertragSearch.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable,
+                                String oldValue, String newValue) {
+
+                System.out.println(" Text Changed to  " + newValue + "\n");
+                if (!newValue.trim().isEmpty()) {
+                    findBy(newValue);
+
+                }
+                //   fillTableview();
+
+            }
+        });
+//         ToggleGroup searchKursGroup = new ToggleGroup();
+//         rbt.setToggleGroup(searchKursGroup);
+//         rbtKursName.setToggleGroup(searchKursGroup);
+//         rbtLehre.setToggleGroup(searchKursGroup);
+    }
+
+    private void findBy(String param) {
+        vertragClient = new VertragClient(restTemplate);
+//        if (.isSelected()) {
+//            list = vertragClient.findByName(param);
+//
+//        } else if (rbtRaum.isSelected()) {
+//            list = kursClient.findByRaum(param);
+//        } else if (rbtLehre.isSelected()) {
+//            list = kursClient.findByLehre(param);
+//        }
+    }
+@FXML
+    private void addToKursAuswahlTable() {
+        selectedKursList.add(selectedKurse);
+        kurssAuswahlData = FXCollections.observableList(selectedKursList).sorted();
+        tbwKursAuswahl.setItems(kurssAuswahlData);
+    }
+
+    private void tbwKursAuswahlFill() {
+        selectedKurse=new Kurs();
+        selectedKursList.add(selectedKurse);
+        kurssAuswahlData = FXCollections.observableList(selectedKursList);
+        clmKursName.setCellValueFactory(new PropertyValueFactory("name"));
+        clmRaum.setCellValueFactory(new PropertyValueFactory("raum"));
+        clmLehre.setCellValueFactory(new PropertyValueFactory("lehre"));
+       // TableColumn<Kurs, Integer> clmLange = new TableColumn<>("kurslange");
+        clmLange.setCellValueFactory(new PropertyValueFactory("kurslang"));
+      //  TableColumn<Kurs, Integer> clmDauern = new TableColumn<>("kursdauern");
+        clmDauern.setCellValueFactory(new PropertyValueFactory("dauer"));
+        //TableColumn<Kurs, Date> clmBeginAb = new TableColumn<>("kursbegin ab");
+        clmBeginAb.setCellValueFactory(new PropertyValueFactory("anfangAb)"));
+        //TableColumn<Kurs, Date> clmEndeBis = new TableColumn<>("kursende");
+        clmEndeBis.setCellValueFactory(new PropertyValueFactory("endeBis)"));
+
+        clmKursDelete.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", (Kurs p) -> {
+            kursdeleteFromAuswahlTable(p);
+           // tbwKursAuswahl.refresh();
+            return p;
+
+        }));
+
+       tbwKursAuswahl.getItems().setAll(kurssAuswahlData);
+
+      tbwKursAuswahl.getColumns().setAll(clmKursName, clmRaum, clmLehre, clmLange,clmDauern,clmBeginAb,clmEndeBis,clmKursDelete);
+
+
+    }
+
+    private void kursdeleteFromAuswahlTable(Kurs p) {
+        kurssAuswahlData.remove(p);
+    }
+
+    public Stage getVertragWindows() {
+        return vertragWindows;
     }
 
     @FXML
-    void saveAction(ActionEvent event) {
+    private void loadKursAuswahFenster(ActionEvent event) throws IOException {
+        vertragWindows = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.initOwner(vertragWindows.getScene().getWindow());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/kurswahl.fxml"));
+        Parent root = loader.load();
+        KurswahlController kurswahlController = loader.getController();
+        dialog.getDialogPane().setContent(root);
+        dialog.showAndWait();
 
     }
+
+
+    public void fillKursField(Kurs auswahl) {
+        selectedKurse = auswahl;
+        System.out.println(selectedKurse.toString());
+        tfKursName.setText(auswahl.getName() != null ? auswahl.getName() : "");
+        tfRaum.setText(auswahl.getRaum() != null ? auswahl.getRaum() : "");
+        tfLehre.setText(auswahl.getLehre() != null ? auswahl.getLehre().toString() : "");
+        tfDauer.setText(String.valueOf(auswahl.getDauer()) != null ? String.valueOf(auswahl.getDauer()) : "");
+        tfKurslang.setText(String.valueOf(auswahl.getKurslang()));
+        tfAnfangenAb.setText(String.valueOf(auswahl.getAnfangAb()));
+        tfEndeBis.setText(String.valueOf(auswahl.getEndeBis()));
+        tfKosten.setText(String.valueOf(auswahl.getKosten()));
+    }
+//
+//    @FXML
+//    void saveAction(ActionEvent event) {
+//
+//    }
+
+    private List<Lehre> getAllVertrage() {
+        return new WebClientStockClient(webClient).getLehreList().collectList().block();
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        fillcomboBox();
+        vertragTableFill();
+        tbwKursAuswahlFill();
+        accordion.setExpandedPane(tpSchulerinformationen);
+        //  tbwKursAuswahlFill();
     }
-    @FXML
-    void addAction(){
 
+    private void fillcomboBox() {
+        cbxGeschlecht.getItems().addAll(Gender.values());
+        cbxZahlungsType.getItems().addAll(ZahlungsType.values());
     }
-    @FXML
-    void saveAction(){
+
+    public void expendAccordion() {
+        accordion.setExpandedPane(tpKursinformationen);
 
     }
 }

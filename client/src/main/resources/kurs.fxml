@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="1019.0"  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.educom.restclient.ui.controller.KursController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="1019.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.educom.restclient.ui.controller.KursController">
    <children>
       <GridPane alignment="BASELINE_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="590.0" prefWidth="1019.0">
          <columnConstraints>
@@ -50,6 +50,8 @@
                   <TextField fx:id="tfKursSearch" />
                   <TableView fx:id="tbwKurs" prefHeight="485.0" prefWidth="598.0">
                      <columns>
+                        <TableColumn fx:id="clmKursUpdate" prefWidth="75.0" text="Update" />
+                        <TableColumn fx:id="clmKursDelete" prefWidth="75.0" text="Delete" />
                         <TableColumn fx:id="clmKursName" prefWidth="75.0" text="Kursname" />
                         <TableColumn fx:id="clmRaum" prefWidth="75.0" text="Raum" />
                         <TableColumn fx:id="clmLehre" prefWidth="75.0" text="Lehre" />

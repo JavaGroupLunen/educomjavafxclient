@@ -68,7 +68,7 @@ public class SchulerController implements Initializable {
         schuler.setFirstName(tfFirstName.getText());
         schuler.setLastName(tfLastName.getText());
         schuler.setEmail(tfEmail.getText());
-        schuler.setAdres(tfAdres.getText());
+        schuler.setAdresse(tfAdres.getText());
         if (tfGDatum.getText() != null && !tfGDatum.getText().trim().isEmpty()) {
             Long gdatum = Long.valueOf(tfGDatum.getText());
             schuler.setGeburstDatum(new Date(gdatum));
@@ -98,7 +98,7 @@ public class SchulerController implements Initializable {
         updatedSchuler.setLastName(tfLastName.getText());
         updatedSchuler.setFirstName(tfFirstName.getText());
         updatedSchuler.setEmail(tfEmail.getText());
-        updatedSchuler.setAdres(tfAdres.getText());
+        updatedSchuler.setAdresse(tfAdres.getText());
         updatedSchuler.setStadt(tfStadt.getText());
         updatedSchuler.setPhoneNumber(updatedSchuler.getPhoneNumber());
         updatedSchuler.setGeburstDatum(new Date());
@@ -160,7 +160,7 @@ public class SchulerController implements Initializable {
         clmPhoneNumber.setCellValueFactory(new PropertyValueFactory("phoneNumber"));
         clmGDatum.setCellValueFactory(new PropertyValueFactory("geburstDatum"));
         clmGender.setCellValueFactory(new PropertyValueFactory("gender"));
-        clmAdres.setCellValueFactory(new PropertyValueFactory("adres"));
+        clmAdres.setCellValueFactory(new PropertyValueFactory("adresse"));
         clmPlz.setCellValueFactory(new PropertyValueFactory("plz"));
         clmStadt.setCellValueFactory(new PropertyValueFactory("stadt"));
 
@@ -223,7 +223,7 @@ public class SchulerController implements Initializable {
         tfFirstName.setText(p.getFirstName());
         tfLastName.setText(p.getLastName());
         tfEmail.setText(p.getEmail());
-        tfAdres.setText(p.getAdres());
+        tfAdres.setText(p.getAdresse());
         tfGDatum.setText(String.valueOf(p.getGeburstDatum()));
         tfPhoneNumber.setText(p.getPhoneNumber());
         tfPlz.setText(p.getPlz());

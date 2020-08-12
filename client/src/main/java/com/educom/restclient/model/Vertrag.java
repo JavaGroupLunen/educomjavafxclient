@@ -7,27 +7,42 @@ import java.util.List;
 public class Vertrag {
 
     private long id;
-    private Date vertragDatum;
-    private Date anfangsdatum;
-    private Date endeDatum;
+    private Date vertragsdatum;
+    private Date vertragsbegin;
+    private Date vertragsende;
     private ZahlungsType zahlungstype;
-    private Double einmaligeprice;
-    private Double anmeldeGebuhr;
+    private Double einmaligeKosten;
+    private Double anmeldegebuhr;
     private Double materialprice;
-    private Double totalprice;
+    private Double summe;
     private Double monatlischeRate;
     private Double restbetrag;
-    private int rabatprice;
+    private int rabat;
     private int rabatPercent;
 
     private Schuler schuler;
 
     private List<Kurs> kursList;
 
-    public Vertrag(Date vertragDatum, Schuler schuler, List<Kurs> kursList) {
-        this.vertragDatum = vertragDatum;
+    public Vertrag(long id, Date vertragsdatum, Date vertragsbegin, Date vertragsende, ZahlungsType zahlungstype, Double einmaligeKosten, Double anmeldegebuhr, Double materialprice, Double totalprice, Double monatlischeRate, Double restbetrag, int rabat, int rabatPercent, Schuler schuler, List<Kurs> kursList) {
+        this.id = id;
+        this.vertragsdatum = vertragsdatum;
+        this.vertragsbegin = vertragsbegin;
+        this.vertragsende = vertragsende;
+        this.zahlungstype = zahlungstype;
+        this.einmaligeKosten = einmaligeKosten;
+        this.anmeldegebuhr = anmeldegebuhr;
+        this.materialprice = materialprice;
+        this.summe = totalprice;
+        this.monatlischeRate = monatlischeRate;
+        this.restbetrag = restbetrag;
+        this.rabat = rabat;
+        this.rabatPercent = rabatPercent;
         this.schuler = schuler;
         this.kursList = kursList;
+    }
+
+    public Vertrag() {
     }
 
     public long getId() {
@@ -38,44 +53,28 @@ public class Vertrag {
         this.id = id;
     }
 
-    public Date getVertragDatum() {
-        return vertragDatum;
+    public Date getVertragsdatum() {
+        return vertragsdatum;
     }
 
-    public void setVertragDatum(Date vertragDatum) {
-        this.vertragDatum = vertragDatum;
+    public void setVertragsdatum(Date vertragsdatum) {
+        this.vertragsdatum = vertragsdatum;
     }
 
-    public Schuler getSchuler() {
-        return schuler;
+    public Date getVertragsbegin() {
+        return vertragsbegin;
     }
 
-    public void setSchuler(Schuler schuler) {
-        this.schuler = schuler;
+    public void setVertragsbegin(Date vertragsbegin) {
+        this.vertragsbegin = vertragsbegin;
     }
 
-    public List<Kurs> getKursList() {
-        return kursList;
+    public Date getVertragsende() {
+        return vertragsende;
     }
 
-    public void setKursList(List<Kurs> kursList) {
-        this.kursList = kursList;
-    }
-
-    public Date getAnfangsdatum() {
-        return anfangsdatum;
-    }
-
-    public void setAnfangsdatum(Date anfangsdatum) {
-        this.anfangsdatum = anfangsdatum;
-    }
-
-    public Date getEndeDatum() {
-        return endeDatum;
-    }
-
-    public void setEndeDatum(Date endeDatum) {
-        this.endeDatum = endeDatum;
+    public void setVertragsende(Date vertragsende) {
+        this.vertragsende = vertragsende;
     }
 
     public ZahlungsType getZahlungstype() {
@@ -86,20 +85,20 @@ public class Vertrag {
         this.zahlungstype = zahlungstype;
     }
 
-    public Double getEinmaligeprice() {
-        return einmaligeprice;
+    public Double getEinmaligeKosten() {
+        return einmaligeKosten;
     }
 
-    public void setEinmaligeprice(Double einmaligeprice) {
-        this.einmaligeprice = einmaligeprice;
+    public void setEinmaligeKosten(Double einmaligeKosten) {
+        this.einmaligeKosten = einmaligeKosten;
     }
 
-    public Double getAnmeldeGebuhr() {
-        return anmeldeGebuhr;
+    public Double getAnmeldegebuhr() {
+        return anmeldegebuhr;
     }
 
-    public void setAnmeldeGebuhr(Double anmeldeGebuhr) {
-        this.anmeldeGebuhr = anmeldeGebuhr;
+    public void setAnmeldegebuhr(Double anmeldegebuhr) {
+        this.anmeldegebuhr = anmeldegebuhr;
     }
 
     public Double getMaterialprice() {
@@ -110,12 +109,12 @@ public class Vertrag {
         this.materialprice = materialprice;
     }
 
-    public Double getTotalprice() {
-        return totalprice;
+    public Double getSumme() {
+        return summe;
     }
 
-    public void setTotalprice(Double totalprice) {
-        this.totalprice = totalprice;
+    public void setSumme(Double summe) {
+        this.summe = summe;
     }
 
     public Double getMonatlischeRate() {
@@ -134,12 +133,12 @@ public class Vertrag {
         this.restbetrag = restbetrag;
     }
 
-    public int getRabatprice() {
-        return rabatprice;
+    public int getRabat() {
+        return rabat;
     }
 
-    public void setRabatprice(int rabatprice) {
-        this.rabatprice = rabatprice;
+    public void setRabat(int rabat) {
+        this.rabat = rabat;
     }
 
     public int getRabatPercent() {
@@ -148,5 +147,21 @@ public class Vertrag {
 
     public void setRabatPercent(int rabatPercent) {
         this.rabatPercent = rabatPercent;
+    }
+
+    public Schuler getSchuler() {
+        return schuler;
+    }
+
+    public void setSchuler(Schuler schuler) {
+        this.schuler = schuler;
+    }
+
+    public List<Kurs> getKursList() {
+        return kursList;
+    }
+
+    public void setKursList(List<Kurs> kursList) {
+        this.kursList = kursList;
     }
 }

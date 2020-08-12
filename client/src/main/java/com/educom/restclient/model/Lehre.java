@@ -1,7 +1,6 @@
 package com.educom.restclient.model;
 
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -19,13 +18,8 @@ private List<Kurs> kanngeben;
     public Lehre() {
     }
 
-    public Lehre(String firstName, String lastName, String email) {
-        super(firstName, lastName, email);
-    }
-
-    public Lehre(String firstName, String lastName, String email, String phoneNumber, Gender gender, Date geburstDatum, String adres, String stadt, String land, String plz, Double stundenLohn) {
-        super(firstName, lastName, email, phoneNumber, gender, geburstDatum, adres, stadt, land, plz);
-        this.stundenLohn = stundenLohn;
+    public Lehre(String text, String text1, String text2) {
+        super();
     }
 
 
