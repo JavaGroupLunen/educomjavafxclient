@@ -24,7 +24,7 @@
                </children>
             </HBox>
             <TextField fx:id="tfKursSearch1" />
-            <TableView fx:id="tbwKurs1" prefHeight="485.0" prefWidth="598.0">
+            <TableView fx:id="tbwKursAuswahlFensterTable" prefHeight="485.0" prefWidth="598.0">
                <columns>
                   <TableColumn fx:id="clmKursName" prefWidth="112.0" text="Kursname" />
                   <TableColumn fx:id="clmRaum" prefWidth="78.0" text="Raum" />

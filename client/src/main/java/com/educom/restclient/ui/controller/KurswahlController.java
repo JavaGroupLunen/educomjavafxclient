@@ -40,7 +40,7 @@ public class KurswahlController implements Initializable {
     @FXML
     private TextField tfKursSearch1;
     @FXML
-    private TableView<Kurs> tbwKurs1;
+    private TableView tbwKursAuswahlFensterTable;
     @FXML
     private TableColumn<Kurs, String> clmKursName, clmRaum, clmLehre;
     @FXML
@@ -49,6 +49,7 @@ public class KurswahlController implements Initializable {
     private TableColumn<Kurs, Integer> clmLange, clmDauern;
     @FXML
     private TableColumn<Kurs, Date> clmBeginAb, clmEndeBis;
+    private  TableColumn chKursWahl = new TableColumn<>("Kurswahl");
     private ObservableList<Kurs> kurssData = observableArrayList();
     private List<Kurs> list = null;
     private Long updatedKursId;
@@ -65,7 +66,7 @@ public class KurswahlController implements Initializable {
             getAllKurs();
         }
         kurssData = FXCollections.observableList(list).sorted();
-        tbwKurs1.setItems(kurssData);
+        tbwKursAuswahlFensterTable.setItems(kurssData);
     }
 
     private void deleteClient(Long id) {
@@ -90,8 +91,16 @@ public class KurswahlController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        tbwKurs1.setEditable(true);
-        tbwKurs1.getSelectionModel().setCellSelectionEnabled(true);
+        fillKursFenbsterTable();
+        ToggleGroup searchKursGroup = new ToggleGroup();
+        rbtRaum1.setToggleGroup(searchKursGroup);
+        rbtKursName1.setToggleGroup(searchKursGroup);
+        rbtLehre1.setToggleGroup(searchKursGroup);
+
+    }
+   private void fillKursFenbsterTable(){
+        tbwKursAuswahlFensterTable.setEditable(true);
+        tbwKursAuswahlFensterTable.getSelectionModel().setCellSelectionEnabled(true);
         clmKursName.setCellValueFactory(new PropertyValueFactory("name"));
         clmRaum.setCellValueFactory(new PropertyValueFactory("raum"));
         clmLehre.setCellValueFactory(new PropertyValueFactory("lehre"));
@@ -99,14 +108,14 @@ public class KurswahlController implements Initializable {
         clmDauern.setCellValueFactory(new PropertyValueFactory("dauer"));
         clmBeginAb.setCellValueFactory(new PropertyValueFactory("anfangAb)"));
         clmBeginAb.setCellValueFactory(new PropertyValueFactory("endeBis)"));
-        TableColumn chKursWahl = new TableColumn<>("Kurswahl");
+        clmKosten.setCellValueFactory(new PropertyValueFactory<>("kosten"));
         chKursWahl.setCellFactory(ActionButtonTableCell.forTableColumn("wahlen", (Kurs p) -> {
             loadVertragController(p);
             return p;
         }));
 
-        tbwKurs1.getItems().setAll(kurssData);
-        tbwKurs1.getColumns().setAll(clmKursName, clmRaum, clmLehre, chKursWahl);
+        tbwKursAuswahlFensterTable.getItems().setAll(kurssData);
+        tbwKursAuswahlFensterTable.getColumns().setAll(clmKursName, clmRaum, clmLehre,clmLange,clmDauern,clmBeginAb,clmEndeBis, chKursWahl);
         fillTableview();
 
         tfKursSearch1.textProperty().addListener(new ChangeListener<String>() {
@@ -116,14 +125,10 @@ public class KurswahlController implements Initializable {
                 System.out.println(" Text Changed to  " + newValue + "\n");
                 if (!newValue.trim().isEmpty()) {
                     findBy(newValue);
-
                 }
                 fillTableview();
-
             }
         });
-        ToggleGroup searchKursGroup = new ToggleGroup();
-
     }
 
     private void loadVertragController(Kurs auswahl) {

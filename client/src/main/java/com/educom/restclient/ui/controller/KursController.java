@@ -53,9 +53,13 @@ public class KursController implements Initializable {
     @FXML
     private TextField tfKursSearch;
     @FXML
-    private TableView<Kurs> tbwKurs;
+    private TableView tbwKurs;
     @FXML
     private TableColumn<Kurs, String> clmKursName, clmRaum, clmLehre;
+    private TableColumn<Schuler, Integer> clmLange=new TableColumn<>("kurslange");
+    private TableColumn<Schuler, Integer> clmDauern=new TableColumn<>("kursdauern");
+    private TableColumn<Schuler, Date> clmBeginAb=new TableColumn<>("kursbegin ab");
+    private TableColumn<Schuler, Date> clmEndeBis=new TableColumn<>("kursende");
     @FXML
     private Button btnAdd;
     @FXML
@@ -161,15 +165,10 @@ public class KursController implements Initializable {
         clmKursName.setCellValueFactory(new PropertyValueFactory("name"));
         clmRaum.setCellValueFactory(new PropertyValueFactory("raum"));
         clmLehre.setCellValueFactory(new PropertyValueFactory("lehre"));
-        TableColumn<Schuler, Integer> clmLange=new TableColumn<>("kurslange");
         clmLange.setCellValueFactory(new PropertyValueFactory("kurslang"));
-        TableColumn<Schuler, Integer> clmDauern=new TableColumn<>("kursdauern");
         clmDauern.setCellValueFactory(new PropertyValueFactory("dauer"));
-        TableColumn<Schuler, Date> clmBeginAb=new TableColumn<>("kursbegin ab");
         clmBeginAb.setCellValueFactory(new PropertyValueFactory("anfangAb)"));
-        TableColumn<Schuler, Date> clmEndeBis=new TableColumn<>("kursende");
         clmEndeBis.setCellValueFactory(new PropertyValueFactory("endeBis)"));
-
         clmDelete.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", (Kurs p) -> {
             deleteClient(p.getId());
             return p;
@@ -180,7 +179,7 @@ public class KursController implements Initializable {
             return p;
         }));
         tbwKurs.getItems().setAll(kurssData);
-        tbwKurs.getColumns().setAll( clmKursName,clmRaum,clmLehre,clmDelete, clmUpdate);
+        tbwKurs.getColumns().setAll( clmKursName,clmRaum,clmLehre,clmLange,clmDauern,clmBeginAb,clmEndeBis,clmDelete, clmUpdate);
         fillTableview();
         tfKursSearch.textProperty().addListener(new ChangeListener<String>() {
             @Override

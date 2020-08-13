@@ -79,7 +79,7 @@ public class VertragContoller implements Initializable {
     @FXML
     private TextField tfKosten, tfEmail;
     @FXML
-    private TableView<Kurs> tbwKursAuswahl;
+    private TableView tbwAngemeldeteKurse;
     @FXML
     private TableColumn<Kurs, String> clmKursName;
     @FXML
@@ -95,7 +95,7 @@ public class VertragContoller implements Initializable {
     @FXML
     private ChoiceBox<ZahlungsType> cbxZahlungsType;
     @FXML
-    private TextField tfEinmaligePrice, tfAnmeldegebuhr, tfMaterialprice, tfTotalprice, tfRabatprice;
+    private TextField tfEinmaligePrice, tfAnmeldegebuhr, tfMaterialkosten, tfTotalprice, tfRabatprice,tfSumme,tfRestbetrag;
     @FXML
     private TextField tfVatername, tfRabatPercent, tfMuttername, tfElternAdres, tfElternPlz, tfIban, tfBic, tfElternTel, tfElternStadt, tfInhaber, tfVertragSearch;
     @FXML
@@ -112,16 +112,21 @@ public class VertragContoller implements Initializable {
     private  TitledPane tpKursinformationen,tpSchulerinformationen,tpElterninformationen;
     @FXML
     private TableColumn<Vertrag, Integer> clmRabatPercent;
-    TableColumn<Kurs, Integer> clmLange = new TableColumn<>("kurslange");
+    @FXML
+    TableColumn<Kurs, Integer> clmLange;
+    @FXML
+    TableColumn<Kurs, Integer> clmDauern;
+    @FXML
+    TableColumn<Kurs, Double> clmKursKosten;
+    @FXML
+    TableColumn<Kurs, String> clmBeginAb;
+    @FXML
+    TableColumn<Kurs, String> clmEndeBis;
+    @FXML
+    private Button btnVertragAdd;
 
-    TableColumn<Kurs, Integer> clmDauern = new TableColumn<>("kursdauern");
-
-    TableColumn<Kurs, String> clmBeginAb = new TableColumn<>("kursbegin ab");
-
-    TableColumn<Kurs, String> clmEndeBis = new TableColumn<>("kursende");
-
-    private final ObservableList<Vertrag> vertragsDatei = observableArrayList();
-    private final List<Kurs> selectedKursList = new ArrayList<>();
+    private ObservableList<Vertrag> vertragsDatei = observableArrayList();
+    private  List<Kurs> selectedKursList=new ArrayList<>();
 
     private ObservableList<Kurs> kurssAuswahlData =  observableArrayList();
     private VertragClient vertragClient;
@@ -131,7 +136,7 @@ public class VertragContoller implements Initializable {
 
 
     @FXML
-    void addAction(ActionEvent event) {
+    void addVertragAction(ActionEvent event) {
         Schuler schuler = new Schuler();
         schuler.setFirstName(tfVorname.getText());
         schuler.setLastName(tfName.getText());
@@ -150,13 +155,31 @@ public class VertragContoller implements Initializable {
         schuler.setVater(tfVatername.getText());
         schuler.setMutter(tfMuttername.getText());
         schuler.setKlasse(tfKlasse.getText());
-
-        Set<Kurs> list = new ArrayList<Kurs>().stream().collect(Collectors.toSet());
-        schuler.setKurses(list);
+       // Set<Kurs> list = new ArrayList<Kurs>().stream().collect(Collectors.toSet());
+        schuler.setKurses(kurssAuswahlData.stream().collect(Collectors.toSet()));
         // schulerClient = new SchulerClient(restTemplate);
         System.out.println(schuler);
         // schulerClient.add(schuler);
+        vertragClient=new VertragClient(restTemplate);
+        Vertrag neuvertrag=new Vertrag();
+        neuvertrag.setSchuler(schuler);
+        neuvertrag.setKursList(kurssAuswahlData.stream().collect(Collectors.toList()));
+        neuvertrag.setAnmeldegebuhr(Double.valueOf(tfAnmeldegebuhr.getText()));
+        neuvertrag.setEinmaligeKosten(Double.valueOf(tfEinmaligePrice.getText()));
+        neuvertrag.setMaterialprice(Double.valueOf(tfMaterialkosten.getText()));
+        neuvertrag.setMonatlischeRate(Double.valueOf(tfMonatlichPrice.getText()));
+        neuvertrag.setRabat(Integer.valueOf(tfRabatprice.getText()));
+        neuvertrag.setRabatPercent(Integer.valueOf(tfRabatPercent.getText()));
+        neuvertrag.setSumme(Double.valueOf(tfSumme.getText()));
+        neuvertrag.setRestbetrag(Double.valueOf(tfRestbetrag.getText()));
+        neuvertrag.setZahlungstype(cbxZahlungsType.getValue());
+        vertragClient.add(neuvertrag);
 
+    }
+    private void getAllVertag(){
+       vertragClient=new VertragClient(restTemplate);
+       vertragsDatei= (ObservableList<Vertrag>) vertragClient.getAllVertrag().stream().collect(Collectors.toList());
+       tbwVertrag.setItems(vertragsDatei);
     }
 
     private void clearField() {
@@ -219,45 +242,60 @@ public class VertragContoller implements Initializable {
 //            list = kursClient.findByLehre(param);
 //        }
     }
-@FXML
+    @FXML
     private void addToKursAuswahlTable() {
-        selectedKursList.add(selectedKurse);
+        if(selectedKurse!=null) {
+            selectedKursList.add(selectedKurse);
+            refreshKursAuswahlTable();
+        }
+        clearKursAuswahlfield();
+    }
+
+    private void clearKursAuswahlfield() {
+        tfKursName.setText("");
+        tfRaum.setText("");
+        tfLehre.setText("");
+        tfDauer.setText("");
+        tfKurslang.setText("");
+        tfAnfangenAb.setText("");
+        tfEndeBis.setText("");
+        tfKosten.setText("");
+    }
+
+    private void refreshKursAuswahlTable(){
         kurssAuswahlData = FXCollections.observableList(selectedKursList).sorted();
-        tbwKursAuswahl.setItems(kurssAuswahlData);
+        tbwAngemeldeteKurse.setItems(kurssAuswahlData);
+        tbwAngemeldeteKurse.refresh();
+
+    }
+    private void setKursListToVertrag(List list){
+
     }
 
     private void tbwKursAuswahlFill() {
-        selectedKurse=new Kurs();
-        selectedKursList.add(selectedKurse);
-        kurssAuswahlData = FXCollections.observableList(selectedKursList);
+        tbwAngemeldeteKurse.setEditable(true);
+        tbwAngemeldeteKurse.getSelectionModel().setCellSelectionEnabled(true);
+        tbwAngemeldeteKurse.editableProperty().setValue(true);
         clmKursName.setCellValueFactory(new PropertyValueFactory("name"));
         clmRaum.setCellValueFactory(new PropertyValueFactory("raum"));
         clmLehre.setCellValueFactory(new PropertyValueFactory("lehre"));
-       // TableColumn<Kurs, Integer> clmLange = new TableColumn<>("kurslange");
         clmLange.setCellValueFactory(new PropertyValueFactory("kurslang"));
-      //  TableColumn<Kurs, Integer> clmDauern = new TableColumn<>("kursdauern");
         clmDauern.setCellValueFactory(new PropertyValueFactory("dauer"));
-        //TableColumn<Kurs, Date> clmBeginAb = new TableColumn<>("kursbegin ab");
         clmBeginAb.setCellValueFactory(new PropertyValueFactory("anfangAb)"));
-        //TableColumn<Kurs, Date> clmEndeBis = new TableColumn<>("kursende");
         clmEndeBis.setCellValueFactory(new PropertyValueFactory("endeBis)"));
-
+        clmKursKosten.setCellValueFactory(new PropertyValueFactory<>("kosten"));
         clmKursDelete.setCellFactory(ActionButtonTableCell.forTableColumn("Delete", (Kurs p) -> {
             kursdeleteFromAuswahlTable(p);
-           // tbwKursAuswahl.refresh();
             return p;
-
         }));
-
-       tbwKursAuswahl.getItems().setAll(kurssAuswahlData);
-
-      tbwKursAuswahl.getColumns().setAll(clmKursName, clmRaum, clmLehre, clmLange,clmDauern,clmBeginAb,clmEndeBis,clmKursDelete);
-
-
+        tbwAngemeldeteKurse.getItems().setAll(kurssAuswahlData);
+        tbwAngemeldeteKurse.getColumns().setAll(clmKursName, clmRaum, clmLehre, clmLange,clmDauern,clmBeginAb,clmEndeBis,clmKursDelete);
     }
 
     private void kursdeleteFromAuswahlTable(Kurs p) {
-        kurssAuswahlData.remove(p);
+        selectedKursList.remove(p);
+        selectedKurse=null;
+        refreshKursAuswahlTable();
     }
 
     public Stage getVertragWindows() {
@@ -277,10 +315,13 @@ public class VertragContoller implements Initializable {
 
     }
 
-
+    /**
+     *
+     * @param auswahl
+     * @apiNote bla bla
+     */
     public void fillKursField(Kurs auswahl) {
         selectedKurse = auswahl;
-        System.out.println(selectedKurse.toString());
         tfKursName.setText(auswahl.getName() != null ? auswahl.getName() : "");
         tfRaum.setText(auswahl.getRaum() != null ? auswahl.getRaum() : "");
         tfLehre.setText(auswahl.getLehre() != null ? auswahl.getLehre().toString() : "");
